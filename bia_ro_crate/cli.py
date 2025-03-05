@@ -39,6 +39,7 @@ def image_crate(
                 raise NotADirectoryError(f"{image_dir} exists but is not a directory.")
             os.mkdir(image_dir)
 
+        logging.info(f"Saving ro-crate.json in {image_dir}")
         with open(image_dir/"ro-crate.json", 'w') as f:
             f.write(json.dumps(ro_crate_metadata, indent=2)) 
 

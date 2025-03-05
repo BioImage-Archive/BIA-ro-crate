@@ -13,7 +13,7 @@ poetry install
 
 Example use:
 ```
-poetry run bia-ro-crate image-crate 42db9fb5-0f2a-4310-b40b-bc358a6e48b9   
+poetry run bia-ro-crate 42db9fb5-0f2a-4310-b40b-bc358a6e48b9   
 ```
 
 Should create a folder 42db9fb5-0f2a-4310-b40b-bc358a6e48b9 with an ro-crate.json inside.

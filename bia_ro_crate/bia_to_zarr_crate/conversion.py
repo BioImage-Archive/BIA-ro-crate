@@ -59,7 +59,6 @@ def create_ro_crate_for_image(image_uuid) -> dict:
     bio_sample_crate_list = []
     for bio_sample in bio_sample_list:
         taxon_ids = [ {"@id": taxon.ncbi_id}  for taxon in bio_sample.organism_classification]
-        logging.info(taxon_ids)
         bio_sample_crate = crate.add(
             Biosample(crate, properties={"organism_classification": taxon_ids})
         )
