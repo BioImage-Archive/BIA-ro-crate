@@ -3,7 +3,7 @@ import logging
 from bia_integrator_api import models
 from ome2024_ngff_challenge.zarr_crate.rembi_extension import Biosample, ImageAcquistion, Specimen
 from ome2024_ngff_challenge.zarr_crate.zarr_extension import ZarrCrate
-
+from bia_ro_crate.licences import to_url
 
 logger = logging.getLogger("__main__." + __name__)
 
@@ -52,7 +52,7 @@ def create_ro_crate_for_image(image_uuid) -> dict:
         properties={
             "name": study.title,
             "description": study.description,
-            "licence": study.licence,
+            "licence": to_url(study.licence),
         },
     )
 
