@@ -1,0 +1,54 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "bia": "http://bia/",
+    "name": {
+      "@id": "schema:name"
+    },
+    "title_id": {
+      "@id": "schema:name"
+    },
+    "accession_id": {
+      "@id": "bia:accessionId"
+    },
+    "license": {
+      "@id": "schema:license"
+    },
+    "about": {
+      "@id": "schema:about"
+    },
+    "conformsTo": {
+      "@id": "http://purl.org/dc/terms/conformsTo"
+    },
+    "datePublished": {
+      "@id": "schema:datePublished"
+    },
+    "description": {
+      "@id": "schema:description"
+    }
+  },
+  "@graph": [
+    {
+      "@type": "schema:CreativeWork",
+      "@id": "ro-crate-metadata.json",
+      "conformsTo": {
+        "@id": "https://w3id.org/ro/crate/1.1"
+      },
+      "about": {
+        "@id": "./"
+      }
+    },
+    {
+      "@type": [
+        "bia:Study",
+        "schema:Dataset"
+      ],
+      "@id": "./",
+      "description": "test",
+      "name": "test2",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "datePublished": "2024-01-23",
+      "accession_id": "S-BIAD1494"
+    }
+  ]
+}
