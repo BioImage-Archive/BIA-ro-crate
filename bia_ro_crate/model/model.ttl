@@ -173,15 +173,16 @@ bia:associatedCorrelationMethod a owl:ObjectProperty ;
 
 bia:association a owl:ObjectProperty ;
     rdfs:label "association"@en ;
-    rdfs:comment """"""@en ;
+    rdfs:comment """?"""@en ;
     rdfs:domain bia:Dataset ;
-    rdfs:range bia:Association
+    rdfs:range bia:Association .
 
 ## Images, Image Representations
 
 # Classes
 
 bia:Image a owl:Class ;
+    rdfs:subClassOf schema:CreativeWork ;
     rdfs:label "image"@en ;
     rdfs:comment "The abstract notion of an image that can have many representions in different image formats. A BIA image has been created from a unique set of File References."@en .
 
@@ -199,17 +200,34 @@ bia:Channel a owl:Class ;
 
 # Properties
 
+bia:representation a owl:ObjectProperty ; # Could be owl:inverseFunctionalProperty, but maybe that's too restrictive for now?
+    rdfs:label "representation"@en ;
+    rdfs:comment "The realisation of a bia:Image in a particular image format. Different bia:ImageRepresentation of the same image should hold equivalent data."@en ;
+    rdfs:domain bia:Image ;
+    rdfs:range bia:ImageRepresentation  .
+
+bia:resultOf a owl:ObjectProperty ; # Could be owl:functionalProperty, but maybe that's too restrictive for now?
+    rdfs:label "created through"@en ;
+    rdfs:comment "The creation process that resulted in the creation of this image."@en ;
+    owl:inverseOf schema:result , jerm:hasOutput ; 
+    rdfs:domain bia:Image ;
+    rdfs:range bia:CreationProcess .
+
 bia:imageFormat  a owl:DatatypeProperty ;
     rdfs:label "image format"@en ;
     rdfs:comment "Image format of the combined files that are make up this Image Representation."@en ;
     rdfs:domain bia:ImageRepresentation ;
     rdfs:range xsd:string .
 
+
+
+
 ## CreationProcess, Specimen
 
 # Classes
 
 bia:CreationProcess a owl:Class ;
+    rdfs:subClassOf schema:Action ;
     rdfs:label "creation process"@en ;
     rdfs:comment "The combination of some protocol that was followed with particular inputs that resulted in the creation of an image."@en .
 
@@ -244,42 +262,43 @@ bia:organismClassification a owl:ObjectProperty ;
 bia:biologicalEntityDescription a owl:DatatypeProperty ;
     rdfs:label "biological entity description"@en ;
     rdfs:comment "A short description of the biological entity."@en ;
-    rdfs:range bia:Taxon ;
+    rdfs:range rdfs:langString ;
     rdfs:domain bia:BioSample .
 
 bia:experimentalVariableDescription a owl:DatatypeProperty ;
     rdfs:label "experimental variable description"@en ;
     rdfs:comment "What is intentionally varied in the sample (e.g. time) between multiple entries in this dataset."@en ;
-    rdfs:range bia:langString ;
+    rdfs:range rdfs:langString ;
     rdfs:domain bia:BioSample .
 
 bia:extrinsicVariableDescription a ow:DatatypeProperty ;
     rdfs:label "extrinsic variable description"@en ;
     rdfs:comment "External treatment (e.g. reagent)."@en ;
-    rdfs:range bia:langString ;
+    rdfs:range rdfs:langString ;
     rdfs:domain bia:BioSample .
 
 bia:intrinsicVariableDescription a owl:DatatypeProperty ;
     rdfs:label "intrinsic variable description"@en ;
     rdfs:comment "Intrinsic (e.g. genetic) alteration."@en ;
-    rdfs:range bia:langString ;
+    rdfs:range rdfs:langString ;
     rdfs:domain bia:BioSample .
 
 bia:commonName a owl:DatatypeProperty ;
     rdfs:label "common name"@en ;
     rdfs:comment "Name used to refer to the species that can vary by locallity."@en ;
-    rdfs:range bia:langString ;
+    rdfs:range rdfs:langString ;
     rdfs:domain bia:Taxon .
 
 bia:scientificName a owl:DatatypeProperty ;
     rdfs:label "scientific name"@en ;
     rdfs:comment "Unique name used by the scientific community to identify species."@en ;
-    rdfs:range bia:langString ;
+    rdfs:range rdfs:langString ;
     rdfs:domain bia:Taxon .
 
 bia:ncbiId a owl:ObjectProperty ;
     rdfs:label "ncbi id"@en ;
     rdfs:comment "ID in the NCBI taxon registry, formatted: NCBI:txid<ID number>."@en ;
+    rdfs:subPropertyOf dc:identifier ;
     rdfs:range xsd:string ;
     rdfs:domain bia:Taxon .
 
@@ -333,6 +352,7 @@ bia:imagingInstrumentDescription a owl:DatatypeProperty ;
 bia:fbbiID a owl:ObjectProperty ;
     rdfs:label "fbbi id"@en ;
     rdfs:comment "Biological Imaging Methods Ontology id indicating the kind of imaging that was perfomed."@en ;
+    rdfs:subPropertyOf dc:identifier ;
     rdfs:range xsd:string ;
     rdfs:domain bia:ImageAcquistionProtocol .
 
