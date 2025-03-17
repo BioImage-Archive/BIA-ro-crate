@@ -92,6 +92,7 @@ bia:Contributor a owl:Class ;
 # We recommend using the following properties from other ontologies:
 # - schema:address to capture address of contributors and affiliations
 # - schema:email to capture contact emaol of contributors and affiliations
+# - schema:memberOf to capture affiliations of both Persons and Organizations (Contributors can be either)  
 
 bia:rorid a owl:DatatypeProperty , owl:InverseFunctionalProperty ;
     rdfs:label "research organiszation registry id"@en ;
@@ -105,14 +106,15 @@ bia:orcid a owl:DatatypeProperty , owl:InverseFunctionalProperty ;
     rdfs:range schema:URL ;
     rdfs:domain schema:Person .
 
-bia:affiliation a owl:ObjectProperty ;
-    rdfs:label "affiliation"@en ;
-    rdfs:comment 
-        """An Affiliation an Contributor is associated with. 
-        Note this is not quite the same as schema:affiliation, as contributor includes groups.
-        Both schema:affiliaiton and schema:subOrganization are probably rdfs:subPropertyOf bia:affiliation."""@en ;
-    rdfs:domain bia:Study ;
-    rdfs:range rdfs: .
+# Use schema:memberOf instead?
+# bia:affiliation a owl:ObjectProperty ;
+#     rdfs:label "affiliation"@en ;
+#     rdfs:comment 
+#         """An Affiliation an Contributor is associated with. 
+#         Note this is not quite the same as schema:affiliation, as contributor includes groups.
+#         Both schema:affiliaiton and schema:subOrganization are probably rdfs:subPropertyOf bia:affiliation."""@en ;
+#     rdfs:domain bia:Study ;
+#     rdfs:range rdfs: .
 
 bia:website a owl:DatatypeProperty ;
     rdfs:label "website"@en ;
@@ -161,7 +163,6 @@ bia:ExternalReference a owl:Class ;
 # Properties
 
 # could we re-use schema:link ?
-
 bia:link a owl:DatatypeProperty ;
     rdfs:label "link"@en ;
     rdfs:comment "A URL linking to the refered resource."@en ;
@@ -193,7 +194,6 @@ bia:Association a owl:Class ;
     rdfs:comment 
         """An object to hold information that applies to all files that are schema:isPartOf a dataset, but not the dataset itself."""@en .
 
-
 # Properties
 
 # We recommend using the following properties from other ontologies:
@@ -213,9 +213,64 @@ bia:associatedCorrelationMethod a owl:ObjectProperty ;
 
 bia:association a owl:ObjectProperty ;
     rdfs:label "association"@en ;
-    rdfs:comment """?"""@en ;
+    rdfs:comment 
+        """The associations proividing information about every element that is a part of the dataset.
+        For each statement `association (property) value`, where `dataset bia:association association`, then for each `dataset schema:hasPart image` there will be a number of additional statements about those images.
+        Depending on the set of properties for all statements of the form `association (property) value` for a given association, a CreationProcesses or Specimen may also be generated to house the statement.
+        In these cases each image will be assumed to have a unique CreationProcess and possible a unique Specimen (depending on the association statements). 
+        See the definitions of the properties in use on the association."""@en ;
     rdfs:domain bia:Dataset ;
     rdfs:range bia:Association .
+
+bia:associatedSubject a owl:ObjectProperty ;
+    rdfs:label "associated subject"@en ;
+    rdfs:comment 
+        """Used to assoicate a specific specimen with all images in a dataset. Useful for correlated images of the same specimen. More formally:
+        Assuming `dataset bia:association association`, and `association bia:associatedSubject specimen`,
+        then for every image that matches `dataset schema:hasPart image`, there exists the statments:
+        `image bia:resultOf creation_process` and `creation_process bia:subject specimen`."""@en ;
+    rdfs:domain bia:Association ;
+    rdfs:range bia:speciemn .
+
+bia:associatedBiologicalEntity a owl:ObjectProperty ;
+    rdfs:label "associated biological entity"@en ;
+    rdfs:comment 
+        """Used to associate a biosample with all images in a dataset.
+        Assuming `dataset bia:association association`, and `association bia:associatedBiologicalEntity bio_sample`,
+        then for every image that matches `dataset schema:hasPart image`, there exists the statments:
+        `image bia:resultOf creation_process`, `creation_process bia:subject specimen`, and `specimen bia:biologicalEntity bio_sample`."""@en ;
+    rdfs:domain bia:Association ;
+    rdfs:range bia:speciemn .
+
+bia:associatedImagingPreparationProtocol a owl:ObjectProperty ;
+    rdfs:label "associated bimaging preparation protocol"@en ;
+    rdfs:comment 
+        """Used to associate a SpecimenImagingPreprationProtocol with all images in a dataset.
+        Assuming `dataset bia:association association`, and `association bia:associatedImagingPreparationProtocol specimen_imaging_preparation_protcol`,
+        then for every image that matches `dataset schema:hasPart image`, there exists the statments:
+        `image bia:resultOf creation_process`, `creation_process bia:subject specimen`, and `specimen bia:imagingPreparationProtocol  specimen_imaging_preparation_protcol`."""@en ;
+    rdfs:domain bia:Association ;
+    rdfs:range bia:speciemn .
+
+bia:associatedProtocol a owl:ObjectProperty ;
+    rdfs:label "associated protocol"@en ;
+    rdfs:comment 
+        """Used to associate a protocol with all images in a dataset.
+        Assuming `dataset bia:association association`, and `association bia:associatedProtocol protocol`,
+        then for every image that matches `dataset schema:hasPart image`, there exists the statments:
+        `image bia:resultOf creation_process`, and `creation_process bia:subject protocol`."""@en ;
+    rdfs:domain bia:Association ;
+    rdfs:range bia:speciemn .
+
+bia:associatedAnnotationMethod a owl:ObjectProperty ;
+    rdfs:label "associated protocol"@en ;
+    rdfs:comment 
+        """Used to associate an annotation method with all images in a dataset.
+        Assuming `dataset bia:association association`, and `association bia:associatedAnnotationMethod annotation_method`,
+        then for every image that matches `dataset schema:hasPart image`, there exists the statments:
+        `image bia:resultOf creation_process`, and `creation_process bia:annotationMethod annotation_method`."""@en ;
+    rdfs:domain bia:Association ;
+    rdfs:range bia:speciemn .
 
 ## Images, Image Representations
 
@@ -318,6 +373,30 @@ bia:digitalSizeC a owl:DatatypeProperty ;
     rdfs:range xsd:integer .
 
 bia:digitalSizeT a owl:DatatypeProperty ;
+    rdfs:label "digital size t"@en ;
+    rdfs:comment "Size of temporal dimension of the data array of the image."@en ;
+    rdfs:domain bia:ImageRepresentation ;
+    rdfs:range xsd:integer .
+
+bia:pixelSizeX a owl:DatatypeProperty ;
+    rdfs:label "pixel size x"@en ;
+    rdfs:comment "Size of a single Pixel or voxel (in meters)."@en ;
+    rdfs:domain bia:ImageRepresentation ;
+    rdfs:range xsd:float .
+
+bia:pixelSizeY a owl:DatatypeProperty ;
+    rdfs:label "digital size x"@en ;
+    rdfs:comment "Size of a single Pixel or voxel (in meters)."@en ;
+    rdfs:domain bia:ImageRepresentation ;
+    rdfs:range xsd:integer .
+
+bia:pixelSizeZ a owl:DatatypeProperty ;
+    rdfs:label "digital size x"@en ;
+    rdfs:comment "Size of a single Pixel or voxel (in meters)."@en ;
+    rdfs:domain bia:ImageRepresentation ;
+    rdfs:range xsd:integer .
+
+bia:timestepDuration a owl:DatatypeProperty ;
     rdfs:label "digital size t"@en ;
     rdfs:comment "Size of temporal dimension of the data array of the image."@en ;
     rdfs:domain bia:ImageRepresentation ;
@@ -534,7 +613,7 @@ bia:spatialInformation a owl:DatatypeProperty ;
     rdfs:range bia:langString ;
     rdfs:domain bia:AnnotationMethod .
 
-bia:methodType a owl:ObjectProperty ;
+bia:annotationMethodType a owl:ObjectProperty ;
     rdfs:label "method type"@en ;
     rdfs:comment "Classification of the kind of annotation that was performed."@en ;
     rdfs:range bia:langString ;
@@ -564,6 +643,23 @@ bia:transormationMatrix a owl:DatatypeProperty ;
     rdfs:range bia:langString ;
     rdfs:domain bia:AnnotationMethod .
 
+bia:signalContrastMechanismDescription a owl:DatatypeProperty ;
+    rdfs:label "signal contrast mechanism description"@en ;
+    rdfs:comment "How is the signal is generated from this sample."@en ;
+    rdfs:range bia:langString ;
+    rdfs:domain bia:SignalChannel .
+
+bia:channelContentDescription a owl:DatatypeProperty ;
+    rdfs:label "channel content description"@en ;
+    rdfs:comment "What staining was used in preparation of the specimen (e.g. IEM, DAB)."@en ;
+    rdfs:range bia:langString ;
+    rdfs:domain bia:SignalChannel .
+
+bia:channelBiologicalEntity a owl:DatatypeProperty ;
+    rdfs:label "channel biological entity"@en ;
+    rdfs:comment "What molecule, part of a cell etc. is stained."@en ;
+    rdfs:range bia:langString ;
+    rdfs:domain bia:SignalChannel .
 
 ## File reference & Annotation Data
 

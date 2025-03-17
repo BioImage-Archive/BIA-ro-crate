@@ -3,33 +3,14 @@
         "bia": "http://bia/",
         "biashapes": "http://bia-shapes/",
         "schema": "http://schema.org/",
-        "attribute": {
-            "@id": "bia:attribute"
-        },
-        "provenance": {
-            "@id": "bia:provenance"
-        },
         "name": {
             "@id": "schema:name"
-        },
-        "title_id": {
-            "@id": "?"
-        },
-        "value": {
-            "@id": "bia:value",
-            "@type":  "@json"
         },
         "accession_id": {
             "@id": "bia:accessionId"
         },
         "license": {
             "@id": "schema:license"
-        },
-        "author": {
-            "@id": "?"
-        },
-        "orcid": {
-            "@id": "@id"
         },
         "display_name": {
             "@id": "schema:name"
@@ -39,16 +20,13 @@
             "@type": "@id"
         },
         "contact_email": {
-            "@id": "bia:contactEmail"
+            "@id": "schema:email"
         },
         "role": {
             "@id": "bia:role"
         },
-        "rorid": {
-            "@id": "@id"
-        },
         "address": {
-            "@id": "bia:address"
+            "@id": "schmea:address"
         },
         "website": {
             "@id": "bia:website"
@@ -57,7 +35,7 @@
             "@id": "schema:name"
         },
         "release_date": {
-            "@id": "bia:releaseDate"
+            "@id": "schema:releaseDate"
         },
         "description": {
             "@id": "schema:description"
@@ -69,10 +47,8 @@
             "@id": "bia:acknowledgement"
         },
         "see_also": {
-            "@id": "bia:seeAlso"
-        },
-        "link": {
-            "@id": "@id"
+            "@id": "bia:seeAlso",
+            "@type": "@id"
         },
         "link_type": {
             "@id": "bia:linkType"
@@ -93,10 +69,12 @@
             "@id": "bia:doi"
         },
         "grant": {
-            "@id": "bia:grant"
+            "@id": "bia:grant",
+            "@type": "@id"
         },
         "funder": {
-            "@id": "bia:funder"
+            "@id": "bia:funder",
+            "@type": "@id"
         },
         "funding_statement": {
             "@id": "bia:fundingStatement"
@@ -113,32 +91,8 @@
         "transformation_matrix": {
             "@id": "bia:transformationMatrix"
         },
-        "example_image_uri": {
-            "@id": "bia:example_image_uri"
-        },
-        "file_path": {
-            "@id": "bia:filePath"
-        },
-        "format": {
-            "@id": "bia:format"
-        },
-        "size_in_bytes": {
-            "@id": "bia:sizeInBytes"
-        },
-        "uri": {
-            "@id": "bia:uri"
-        },
         "image_format": {
-            "@id": "bie:imageFormat"
-        },
-        "use_type": {
-            "@id": "bia:useType"
-        },
-        "file_uri": {
-            "@id": "bia:fileURI"
-        },
-        "total_size_in_bytes": {
-            "@id": "bia:totalSizeInBytes"
+            "@id": "bia:imageFormat"
         },
         "physical_size_x": {
             "@id": "bia:physicalSizeX"
@@ -149,59 +103,59 @@
         "physical_size_z": {
             "@id": "bia:physicalSizeZ"
         },
-        "size_x": {
-            "@id": "bia:sizeX"
+        "digital_size_x": {
+            "@id": "bia:digitalSizeX"
         },
-        "size_y": {
-            "@id": "bia:sizeY"
+        "digital_size_y": {
+            "@id": "bia:digitalSizeY"
         },
-        "size_z": {
-            "@id": "bia:sizeZ"
+        "digital_size_z": {
+            "@id": "bia:digitalSizeZ"
         },
-        "size_c": {
-            "@id": "bia:sizeC"
+        "digital_size_c": {
+            "@id": "bia:digitalSizeC"
         },
-        "size_t": {
-            "@id": "bia:sizeT"
+        "digital_size_t": {
+            "@id": "bia:digitalSizeT"
         },
         "protocol_description": {
-            "@id": "?"
+            "@id": "bia:protocolDescription"
         },
         "imaging_instrument_description": {
-            "@id": "?"
+            "@id": "bia:imagingInstrumentDescription"
         },
         "fbbi_id": {
-            "@id": "?"
+            "@id": "bia:fbbiID"
         },
         "imaging_method_name": {
-            "@id": "?"
+            "@id": "bia:imagingMethodName"
         },
         "signal_channel_information": {
-            "@id": "?"
+            "@id": "bia:signalChannelInformation"
         },
         "signal_contrast_mechanism_description": {
-            "@id": "?"
+            "@id": "bia:signalContrastMechanismDescription"
         },
         "channel_content_description": {
-            "@id": "?"
+            "@id": "bia:channelContentDescription"
         },
         "channel_biological_entity": {
-            "@id": "?"
+            "@id": "bia:channelBiologicalEntity"
         },
         "annotation_criteria": {
-            "@id": "?"
+            "@id": "bia:annotationCriteria"
         },
         "annotation_coverage": {
-            "@id": "?"
+            "@id": "bia:annotationCoverage"
         },
         "transformation_description": {
-            "@id": "?"
+            "@id": "bia:transformationDescription"
         },
         "spatial_information": {
-            "@id": "?"
+            "@id": "bia:spatialInformation"
         },
         "method_type": {
-            "@id": "?"
+            "@id": "bia:annotationMethodType"
         },
         "annotation_source_indicator": {
             "@id": "bia:annotation_source_indicator"
@@ -211,31 +165,25 @@
             "@type": "@id"
         },
         "common_name": {
-            "@id": "?"
+            "@id": "bia:commonName"
         },
         "scientific_name": {
-            "@id": "?"
+            "@id": "bia:scientiticName"
         },
         "ncbi_id": {
             "@id": "@id"
         },
         "biological_entity_description": {
-            "@id": "?"
+            "@id": "bia:biologicalEntityDescription"
         },
         "experimental_variable_description": {
-            "@id": "?"
+            "@id": "bia:experimentalVariableDescription"
         },
         "extrinsic_variable_description": {
-            "@id": "?"
+            "@id": "bia:extrinsicVariableDescription"
         },
         "intrinsic_variable_description": {
-            "@id": "?"
-        },
-        "submitted_in_study": {
-            "@id": "?"
-        },
-        "submission_dataset": {
-            "@id": "?"
+            "@id": "bia:intrinsicVariableDescription"
         },
         "creation_process": {
             "@id": "?"
@@ -246,23 +194,14 @@
         "original_file_reference": {
             "@id": "?"
         },
-        "imaging_preparation_protocol": {
-            "@id": "?"
-        },
         "sample_of": {
-            "@id": "?"
-        },
-        "subject_specimen": {
-            "@id": "?"
-        },
-        "image_acquisition_protocol": {
             "@id": "?"
         },
         "input_image": {
             "@id": "?"
         },
         "protocol": {
-            "@id": "?"
+            "@id": "bia:protocol"
         },
         "annotation_method": {
             "@id": "?"
@@ -271,7 +210,7 @@
             "@id": "?"
         },
         "contributor": {
-            "@id": "?",
+            "@id": "schema:author",
             "@type": "@id"
         },
         "channel_id": {
@@ -295,20 +234,39 @@
             "@type": "@id"
 
         },
-        "bio_sample": {
-            "@id": "bia:bioSample",
+        "associated_subject": {
+            "@id": "bia:associatedSubject",
             "@type": "@id"
         },
-        "specimen_imaging_preparation_protocol": {
+        "biological_entity": {
+            "@id": "bia:biological_entity",
+            "@type": "@id"
+        },
+        "subject_specimen": {
+            "@id": "bia:subject"
+        },
+        "associated_bio_sample": {
+            "@id": "bia:associatedBiologicalEntity",
+            "@type": "@id"
+        },
+        "imaging_preparation_protocol": {
+            "@id": "bia:imagingPreparationProtocol",
+            "@type": "@id"
+        },
+        "associated_specimen_imaging_preparation_protocol": {
+            "@id": "bia:specimenImagingPreparationProtocol",
+            "@type": "@id"
+        },
+        "image_acquisition_protocol": {
+            "@id": "bia:imagingPreparationProtocol",
+            "@type": "@id"
+        },
+        "associated_specimen_image_acquisition_protocol": {
             "@id": "bia:specimenImagingPreparationProtocol",
             "@type": "@id"
         },
         "sample_image": {
             "@id": "bia:sampleImage",
-            "@type": "@id"
-        },
-        "biological_entity": {
-            "@id": "bia:biological_entity",
             "@type": "@id"
         },
         "specimen": {
@@ -385,8 +343,7 @@
         {
             "@id": "https://ror.org/0243gzr89",
             "@type": "bia:Affiliation",
-            "display_name": "Max Planck Institute of Biophysics",
-            "rorid": "https://ror.org/0243gzr89"
+            "display_name": "Max Planck Institute of Biophysics"
         },
         {
             "@id": "Nup133 mouse stem cells",
@@ -397,7 +354,6 @@
         {
             "@id": "Wild type mouse stem cells",
             "@type": "bia:BioSample",
-            "title_id": "Wild Type",
             "biological_entity_description": "mouse embryonic stem cells and differentiated neuronal precursors from wild-type HM1 line.",
             "organism_classification": "NCBI:txid10090"
         },
@@ -458,7 +414,7 @@
             "specimen": [
                 "_:sp0"
             ],
-            "specimen_imaging_preparation_protocol": [
+            "imaging_preparation_protocol": [
                 "Mouse embryonic stem cell prepration"
             ]
         },
@@ -472,7 +428,7 @@
         {
             "@id": "DNA_damage/Nup133K0/Np_24h/Rep1/",
             "@type": ["bia:Dataset", "schema:Dataset"],
-            "title_id": "Nup133K0 24h replicate-1",
+            "title": "Nup133K0 24h replicate-1",
             "association": [
                 "_:a0"
             ]
@@ -480,13 +436,13 @@
         {
             "@id": "_:a0",
             "@type": "biashape:Association",
-            "bio_sample": [
+            "associated_bio_sample": [
                 "Nup133 mouse stem cells"
             ],
-            "specimen_imaging_preparation_protocol": [
+            "associated_specimen_imaging_preparation_protocol": [
                 "Mouse embryonic stem cell prepration"
             ],
-            "image_acquisition_protocol": [
+            "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
             "_:replicate": "replicate-1",
@@ -495,7 +451,7 @@
         {
             "@id": "DNA_damage/Nup133K0/Np_24h/Rep2/",
             "@type": ["bia:Dataset", "schema:Dataset"],
-            "title_id": "Nup133K0 24h replicate-2",
+            "title": "Nup133K0 24h replicate-2",
             "association": [
                 "_:a0"
             ]
@@ -503,13 +459,13 @@
         {
             "@id": "_:a1",
             "@type": "biashape:Association",
-            "bio_sample": [
+            "associated_bio_sample": [
                 "Nup133 mouse stem cells"
             ],
-            "specimen_imaging_preparation_protocol": [
+            "associated_specimen_imaging_preparation_protocol": [
                 "Mouse embryonic stem cell prepration"
             ],
-            "image_acquisition_protocol": [
+            "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
             "_:replicate": "replicate-2",
@@ -518,7 +474,7 @@
         {
             "@id": "DNA_damage/Nup133K0/Np_24h/Rep3/",
             "@type": ["bia:Dataset", "schema:Dataset"],
-            "title_id": "Nup133K0 24h replicate-3",
+            "title": "Nup133K0 24h replicate-3",
             "association": [
                 "_:a2"
             ]
@@ -526,13 +482,13 @@
         {
             "@id": "_:a2",
             "@type": "biashape:Association",
-            "bio_sample": [
+            "associated_bio_sample": [
                 "Nup133 mouse stem cells"
             ],
-            "specimen_imaging_preparation_protocol": [
+            "associated_specimen_imaging_preparation_protocol": [
                 "Mouse embryonic stem cell prepration"
             ],
-            "image_acquisition_protocol": [
+            "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
             "_:replicate": "replicate-3",
@@ -541,7 +497,7 @@
         {
             "@id": "DNA_damage/Nup133KO/NP_2h/Rep1/",
             "@type": ["bia:Dataset", "schema:Dataset"],
-            "title_id": "Nup133K0 2h replicate-1",
+            "title": "Nup133K0 2h replicate-1",
             "association": [
                 "_:a3"
             ]
@@ -549,13 +505,13 @@
         {
             "@id": "_:a3",
             "@type": "biashape:Association",
-            "bio_sample": [
+            "associated_bio_sample": [
                 "Nup133 mouse stem cells"
             ],
-            "specimen_imaging_preparation_protocol": [
+            "associated_specimen_imaging_preparation_protocol": [
                 "Mouse embryonic stem cell prepration"
             ],
-            "image_acquisition_protocol": [
+            "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
             "_:replicate": "replicate-1",
@@ -564,7 +520,7 @@
         {
             "@id": "DNA_damage/Nup133KO/NP_2h/Rep2/",
             "@type": ["bia:Dataset", "schema:Dataset"],
-            "title_id": "Nup133K0 2h replicate-2",
+            "title": "Nup133K0 2h replicate-2",
             "association": [
                 "_:a4"
             ]
@@ -572,13 +528,13 @@
         {
             "@id": "_:a4",
             "@type": "biashape:Association",
-            "bio_sample": [
+            "associated_bio_sample": [
                 "Nup133 mouse stem cells"
             ],
-            "specimen_imaging_preparation_protocol": [
+            "associated_specimen_imaging_preparation_protocol": [
                 "Mouse embryonic stem cell prepration"
             ],
-            "image_acquisition_protocol": [
+            "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
             "_:replicate": "replicate-2",
@@ -587,7 +543,7 @@
         {
             "@id": "DNA_damage/Nup133KO/NP_2h/Rep3/",
             "@type": ["bia:Dataset", "schema:Dataset"],
-            "title_id": "Nup133K0 2h replicate-3",
+            "title": "Nup133K0 2h replicate-3",
             "association": [
                 "_:a5"
             ]
@@ -595,13 +551,13 @@
         {
             "@id": "_:a5",
             "@type": "biashape:Association",
-            "bio_sample": [
+            "associated_bio_sample": [
                 "Nup133 mouse stem cells"
             ],
-            "specimen_imaging_preparation_protocol": [
+            "associated_specimen_imaging_preparation_protocol": [
                 "Mouse embryonic stem cell prepration"
             ],
-            "image_acquisition_protocol": [
+            "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
             "_:replicate": "replicate-3",
@@ -610,7 +566,7 @@
         {
             "@id": "DNA_damage/Nup133KO/mES/Rep1/",
             "@type": ["bia:Dataset", "schema:Dataset"],
-            "title_id": "Nup133K0 mES replicate-1",
+            "title": "Nup133K0 mES replicate-1",
             "association": [
                 "_:a6"
             ]
@@ -618,13 +574,13 @@
         {
             "@id": "_:a6",
             "@type": "biashape:Association",
-            "bio_sample": [
+            "associated_bio_sample": [
                 "Nup133 mouse stem cells"
             ],
-            "specimen_imaging_preparation_protocol": [
+            "associated_specimen_imaging_preparation_protocol": [
                 "Mouse embryonic stem cell prepration"
             ],
-            "image_acquisition_protocol": [
+            "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
             "_:replicate": "replicate-1",
@@ -633,7 +589,7 @@
         {
             "@id": "DDNA_damage/Nup133KO/mES/Rep2/",
             "@type": ["bia:Dataset", "schema:Dataset"],
-            "title_id": "Nup133K0 mES replicate-2",
+            "title": "Nup133K0 mES replicate-2",
             "association": [
                 "_:a7"
             ]
@@ -641,13 +597,13 @@
         {
             "@id": "_:a7",
             "@type": "biashape:Association",
-            "bio_sample": [
+            "associated_bio_sample": [
                 "Nup133 mouse stem cells"
             ],
-            "specimen_imaging_preparation_protocol": [
+            "associated_specimen_imaging_preparation_protocol": [
                 "Mouse embryonic stem cell prepration"
             ],
-            "image_acquisition_protocol": [
+            "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
             "_:replicate": "replicate-2",
@@ -656,7 +612,7 @@
         {
             "@id": "DNA_damage/Nup133KO/mES/Rep3/",
             "@type": ["bia:Dataset", "schema:Dataset"],
-            "title_id": "Nup133K0 mES replicate-3",
+            "title": "Nup133K0 mES replicate-3",
             "association": [
                 "_:a8"
             ]
@@ -664,13 +620,13 @@
         {
             "@id": "_:a8",
             "@type": "biashape:Association",
-            "bio_sample": [
+            "associated_bio_sample": [
                 "Nup133 mouse stem cells"
             ],
-            "specimen_imaging_preparation_protocol": [
+            "associated_specimen_imaging_preparation_protocol": [
                 "Mouse embryonic stem cell prepration"
             ],
-            "image_acquisition_protocol": [
+            "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
             "_:replicate": "replicate-3",
@@ -679,7 +635,7 @@
         {
             "@id": "DNA_damage/WT/NP_24h/Rep1/",
             "@type": ["bia:Dataset", "schema:Dataset"],
-            "title_id": "Wild Type 24h replicate-1",
+            "title": "Wild Type 24h replicate-1",
             "association": [
                 "_:a9"
             ]
@@ -687,13 +643,13 @@
         {
             "@id": "_:a9",
             "@type": "biashape:Association",
-            "bio_sample": [
+            "associated_bio_sample": [
                 "Wild type mouse stem cells"
             ],
-            "specimen_imaging_preparation_protocol": [
+            "associated_specimen_imaging_preparation_protocol": [
                 "Mouse embryonic stem cell prepration"
             ],
-            "image_acquisition_protocol": [
+            "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
             "_:replicate": "replicate-1",
@@ -702,7 +658,7 @@
         {
             "@id": "DNA_damage/WT/NP_24h/Rep2/",
             "@type": ["bia:Dataset", "schema:Dataset"],
-            "title_id": "Wild Type 24h replicate-2",
+            "title": "Wild Type 24h replicate-2",
             "association": [
                 "_:a10"
             ]
@@ -710,13 +666,13 @@
         {
             "@id": "_:a10",
             "@type": "biashape:Association",
-            "bio_sample": [
+            "associated_bio_sample": [
                 "Wild type mouse stem cells"
             ],
-            "specimen_imaging_preparation_protocol": [
+            "associated_specimen_imaging_preparation_protocol": [
                 "Mouse embryonic stem cell prepration"
             ],
-            "image_acquisition_protocol": [
+            "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
             "_:replicate": "replicate-2",
@@ -725,7 +681,7 @@
         {
             "@id": "DNA_damage/WT/NP_24h/Rep3/",
             "@type": ["bia:Dataset", "schema:Dataset"],
-            "title_id": "Wild Type 24h replicate-3",
+            "title": "Wild Type 24h replicate-3",
             "association": [
                 "_:a11"
             ]
@@ -733,13 +689,13 @@
         {
             "@id": "_:a11",
             "@type": "biashape:Association",
-            "bio_sample": [
+            "associated_bio_sample": [
                 "Wild type mouse stem cells"
             ],
-            "specimen_imaging_preparation_protocol": [
+            "associated_specimen_imaging_preparation_protocol": [
                 "Mouse embryonic stem cell prepration"
             ],
-            "image_acquisition_protocol": [
+            "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
             "_:replicate": "replicate-3",
@@ -748,7 +704,7 @@
         {
             "@id": "DNA_damage/WT/NP_2h/Rep1/",
             "@type": ["bia:Dataset", "schema:Dataset"],
-            "title_id": "Wild Type 2h replicate-1",
+            "title": "Wild Type 2h replicate-1",
             "association": [
                 "_:a12"
             ]
@@ -756,13 +712,13 @@
         {
             "@id": "_:a12",
             "@type": "biashape:Association",
-            "bio_sample": [
+            "associated_bio_sample": [
                 "Wild type mouse stem cells"
             ],
-            "specimen_imaging_preparation_protocol": [
+            "associated_specimen_imaging_preparation_protocol": [
                 "Mouse embryonic stem cell prepration"
             ],
-            "image_acquisition_protocol": [
+            "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
             "_:replicate": "replicate-1",
@@ -771,7 +727,7 @@
         {
             "@id": "DNA_damage/WT/NP_2h/Rep2/",
             "@type": ["bia:Dataset", "schema:Dataset"],
-            "title_id": "Wild Type 2h replicate-2",
+            "title": "Wild Type 2h replicate-2",
             "association": [
                 "_:a13"
             ]
@@ -779,13 +735,13 @@
         {
             "@id": "_:a13",
             "@type": "biashape:Association",
-            "bio_sample": [
+            "associated_bio_sample": [
                 "Wild type mouse stem cells"
             ],
-            "specimen_imaging_preparation_protocol": [
+            "associated_specimen_imaging_preparation_protocol": [
                 "Mouse embryonic stem cell prepration"
             ],
-            "image_acquisition_protocol": [
+            "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
             "_:replicate": "replicate-2",
@@ -794,7 +750,7 @@
         {
             "@id": "DNA_damage/WT/NP_2h/Rep3/",
             "@type": ["bia:Dataset", "schema:Dataset"],
-            "title_id": "Wild Type 2h replicate-3",
+            "title": "Wild Type 2h replicate-3",
             "association": [
                 "_:a14"
             ]
@@ -802,13 +758,13 @@
         {
             "@id": "_:a14",
             "@type": "biashape:Association",
-            "bio_sample": [
+            "associated_bio_sample": [
                 "Wild type mouse stem cells"
             ],
-            "specimen_imaging_preparation_protocol": [
+            "associated_specimen_imaging_preparation_protocol": [
                 "Mouse embryonic stem cell prepration"
             ],
-            "image_acquisition_protocol": [
+            "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
             "_:replicate": "replicate-3",
@@ -817,21 +773,21 @@
         {
             "@id": "DNA_damage/WT/NP_2h/Rep1/",
             "@type": ["bia:Dataset", "schema:Dataset"],
-            "title_id": "Wild Type mES replicate-1",
+            "title": "Wild Type mES replicate-1",
             "association": [
-                "_:a12"
+                "_:a15"
             ]
         },
         {
-            "@id": "_:a12",
+            "@id": "_:a15",
             "@type": "biashape:Association",
-            "bio_sample": [
+            "associated_bio_sample": [
                 "Wild type mouse stem cells"
             ],
-            "specimen_imaging_preparation_protocol": [
+            "associated_specimen_imaging_preparation_protocol": [
                 "Mouse embryonic stem cell prepration"
             ],
-            "image_acquisition_protocol": [
+            "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
             "_:replicate": "replicate-1",
@@ -840,21 +796,21 @@
         {
             "@id": "DNA_damage/WT/NP_2h/Rep2/",
             "@type": ["bia:Dataset", "schema:Dataset"],
-            "title_id": "Wild Type mES replicate-2",
+            "title": "Wild Type mES replicate-2",
             "association": [
-                "_:a13"
+                "_:a16"
             ]
         },
         {
-            "@id": "_:a13",
+            "@id": "_:a16",
             "@type": "biashape:Association",
-            "bio_sample": [
+            "associated_bio_sample": [
                 "Wild type mouse stem cells"
             ],
-            "specimen_imaging_preparation_protocol": [
+            "associated_specimen_imaging_preparation_protocol": [
                 "Mouse embryonic stem cell prepration"
             ],
-            "image_acquisition_protocol": [
+            "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
             "_:replicate": "replicate-2",
@@ -863,21 +819,21 @@
         {
             "@id": "DNA_damage/WT/NP_2h/Rep3/",
             "@type": ["bia:Dataset", "schema:Dataset"],
-            "title_id": "Wild Type mES replicate-3",
+            "title": "Wild Type mES replicate-3",
             "association": [
-                "_:a14"
+                "_:a17"
             ]
         },
         {
-            "@id": "_:a14",
+            "@id": "_:a17",
             "@type": "biashape:Association",
-            "bio_sample": [
+            "associated_bio_sample": [
                 "Wild type mouse stem cells"
             ],
-            "specimen_imaging_preparation_protocol": [
+            "associated_specimen_imaging_preparation_protocol": [
                 "Mouse embryonic stem cell prepration"
             ],
-            "image_acquisition_protocol": [
+            "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
             "_:replicate": "replicate-3",
