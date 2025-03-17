@@ -33,6 +33,7 @@ bia:Publication a owl:Class ;
 # - schema:releaseDate to capture when a study or publication is made publicly avaliable
 # - schema:keywords to capture keywords or tags used to describe the subject or context of the study.
 # - schena:license to capture the licence associated with any data attached to the study.
+# - schema:hasPart to capture bia:Datasets that are part of the study
 
 bia:accessionId a owl:ObjectProperty;
     rdfs:label "accession id"@en ;
@@ -79,7 +80,7 @@ bia:Affiliation a owl:Class ;
     rdfs:comment "An organsiation that a contributor is affiliated with."@en .
 
 bia:Contributor a owl:Class ;
-    rdfs:label "contributor" ;
+    rdfs:label "contributor"@en ;
     rdfs:comment "A person or group that contributed to the creation of a Document."@en .
 
 # We also recommend using the following classes from other ontologies:
@@ -92,13 +93,13 @@ bia:Contributor a owl:Class ;
 # - schema:address to capture address of contributors and affiliations
 # - schema:email to capture contact emaol of contributors and affiliations
 
-bia:rorid a owl:DatatypeProperty ;
+bia:rorid a owl:DatatypeProperty , owl:InverseFunctionalProperty ;
     rdfs:label "research organiszation registry id"@en ;
     rdfs:comment "Research Organiszation Registry ID"@en ;
     rdfs:range schema:URL ;
     rdfs:domain schema:Organization .
 
-bia:orcid a owl:DatatypeProperty ;
+bia:orcid a owl:DatatypeProperty , owl:InverseFunctionalProperty ;
     rdfs:label "research organiszation registry id"@en ;
     rdfs:comment "Research Organiszation Registry ID"@en ;
     rdfs:range schema:URL ;
@@ -109,7 +110,7 @@ bia:affiliation a owl:ObjectProperty ;
     rdfs:comment 
         """An Affiliation an Contributor is associated with. 
         Note this is not quite the same as schema:affiliation, as contributor includes groups.
-        Both schema:affiliaiton and schema:subOrganization are probably rdfs:subPropertyOf bia:affiliation.""" ;
+        Both schema:affiliaiton and schema:subOrganization are probably rdfs:subPropertyOf bia:affiliation."""@en ;
     rdfs:domain bia:Study ;
     rdfs:range rdfs: .
 
@@ -229,13 +230,16 @@ bia:ImageRepresentation a owl:Class ;
     rdfs:label "image representation"@en ;
     rdfs:comment "The viewable or processable represention of an image in a particular image file format. Images representations of the same image hold equivalent data."@en .
 
-bia:RenderedView a owl:Class ;
-    rdfs:label "rendered view"@en ;
-    rdfs:comment "A particular view of an image, such as as a specific timestamp of a time series, or a view direction of a 3D model."@en .
 
-bia:Channel a owl:Class ;
-    rdfs:label "channel"@en ;
-    rdfs:comment "An image channel."@en .
+# TODO: Review image viewer settings, rendered view etc.
+# bia:RenderedView a owl:Class ;
+#     rdfs:label "rendered view"@en ;
+#     rdfs:comment "A particular view of an image, such as as a specific timestamp of a time series, or a view direction of a 3D model."@en .
+
+# bia:Channel a owl:Class ;
+#     rdfs:label "channel"@en ;
+#     rdfs:comment "An image channel."@en .
+
 
 # Properties
 
@@ -258,8 +262,66 @@ bia:imageFormat  a owl:DatatypeProperty ;
     rdfs:domain bia:ImageRepresentation ;
     rdfs:range xsd:string .
 
+bia:totalSizeInBytes a owl:DatatypeProperty ;
+    rdfs:label "total size in bytes"@en ;
+    rdfs:comment "combined disc size in bytes of all the files."@en ;
+    rdfs:domain bia:ImageRepresentation ;
+    rdfs:range xsd:string .
 
+# Note: review rdfs:range type - is xsd:decimal the right choice?
+bia:physicalSizeX a owl:DatatypeProperty ;
+    rdfs:label "physical size x"@en ;
+    rdfs:comment "Size of the physical space (in meters) captured in the field of view of the image."@en ;
+    rdfs:domain bia:ImageRepresentation ;
+    rdfs:range xsd:decimal .
 
+bia:physicalSizeY a owl:DatatypeProperty ;
+    rdfs:label "physical size y"@en ;
+    rdfs:comment "Size of the physical space (in meters) captured in the field of view of the image."@en ;
+    rdfs:domain bia:ImageRepresentation ;
+    rdfs:range xsd:decimal .
+
+bia:physicalSizeZ a owl:DatatypeProperty ;
+    rdfs:label "physical size z"@en ;
+    rdfs:comment "Size of the physical space (in meters) captured in the field of view of the image."@en ;
+    rdfs:domain bia:ImageRepresentation ;
+    rdfs:range xsd:decimal .
+
+bia:phsyicalSizeT a owl:DatatypeProperty ;
+    rdfs:label "physical size t"@en ;
+    rdfs:comment "Size of the duration (in seconds) captured by the image/video."@en ;
+    rdfs:domain bia:ImageRepresentation ;
+    rdfs:range xsd:decimal .
+
+bia:digitalSizeX a owl:DatatypeProperty ;
+    rdfs:label "digital size x"@en ;
+    rdfs:comment "Pixels or voxels dimension of the data array of the image."@en ;
+    rdfs:domain bia:ImageRepresentation ;
+    rdfs:range xsd:integer .
+
+bia:digitalSizeY a owl:DatatypeProperty ;
+    rdfs:label "digital size x"@en ;
+    rdfs:comment "Pixels or voxels dimension of the data array of the image."@en ;
+    rdfs:domain bia:ImageRepresentation ;
+    rdfs:range xsd:integer .
+
+bia:digitalSizeZ a owl:DatatypeProperty ;
+    rdfs:label "digital size x"@en ;
+    rdfs:comment "Pixels or voxels dimension of the data array of the image."@en ;
+    rdfs:domain bia:ImageRepresentation ;
+    rdfs:range xsd:integer .
+
+bia:digitalSizeC a owl:DatatypeProperty ;
+    rdfs:label "digital size c"@en ;
+    rdfs:comment "number of channels of the image."@en ;
+    rdfs:domain bia:ImageRepresentation ;
+    rdfs:range xsd:integer .
+
+bia:digitalSizeT a owl:DatatypeProperty ;
+    rdfs:label "digital size t"@en ;
+    rdfs:comment "Size of temporal dimension of the data array of the image."@en ;
+    rdfs:domain bia:ImageRepresentation ;
+    rdfs:range xsd:integer .
 
 ## CreationProcess, Specimen
 
@@ -508,6 +570,7 @@ bia:transormationMatrix a owl:DatatypeProperty ;
 # Classes
 
 bia:FileReference a owl:Class ;
+    rdfs:subClassOf schema:File ;
     rdfs:label "file reference" ;
     rdfs:comment "An individual file."@en .
 
@@ -518,10 +581,26 @@ bia:AnnotationData a owl:Class ;
 
 # Properties
 
+# We recommend using the following properties from other ontologies:
+# - schema:fileFormat to capture file format or type.
 
+bia:filePath a owl:Dataproperty ;
+    rdfs:label "file path"@en ;
+    rdfs:comment "The relative path (including the name) of the file in the context of this Study's file structure."@en ;
+    rdfs:range xsd:string ;
+    rdfs:domain bia:FileReference .
 
+# Note: does this need to be different to what is used on Image Represenations (totalSizeInBytes)?
+bia:sizeInBytes a owl:DatatypeProperty ;
+    rdfs:label "size in bytes"@en ;
+    rdfs:subPropertyOf schema:contentSize ;
+    rdfs:comment "Disc size in bytes."@en ;
+    rdfs:range xsd:integer ;
+    rdfs:domain bia:FileReference .
 
-
-
-
-
+# Note: does this need to be different to what is used on Image Represenations (fileURI)?
+bia:uri a owl:Dataproperty ;
+    rdfs:label "file path"@en ;
+    rdfs:comment "URI from which the file can be accessed."@en ;
+    rdfs:range xsd:string ;
+    rdfs:domain bia:FileReference .
