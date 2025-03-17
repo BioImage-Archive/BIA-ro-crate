@@ -186,19 +186,16 @@
             "@id": "bia:intrinsicVariableDescription"
         },
         "creation_process": {
-            "@id": "?"
+            "@id": "bia:creationProcess"
         },
         "representation_of": {
-            "@id": "?"
-        },
-        "original_file_reference": {
-            "@id": "?"
+            "@id": "bia:representationOf"
         },
         "sample_of": {
-            "@id": "?"
+            "@id": "bia:sampleOf"
         },
         "input_image": {
-            "@id": "?"
+            "@id": "bia:inputImage"
         },
         "protocol": {
             "@id": "bia:protocol"
