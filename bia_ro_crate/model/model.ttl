@@ -82,8 +82,47 @@ bia:Contributor a owl:Class ;
     rdfs:label "contributor" ;
     rdfs:comment "A person or group that contributed to the creation of a Document."@en .
 
+# We also recommend using the following classes from other ontologies:
+# - schema:Person for instances of bia:Contributor that are People
+# - schema:Organization for instance of bia:Contributor that are Organisations
+
 # Properties
 
+# We recommend using the following properties from other ontologies:
+# - schema:address to capture address of contributors and affiliations
+# - schema:email to capture contact emaol of contributors and affiliations
+
+bia:rorid a owl:DatatypeProperty ;
+    rdfs:label "research organiszation registry id"@en ;
+    rdfs:comment "Research Organiszation Registry ID"@en ;
+    rdfs:range schema:URL ;
+    rdfs:domain schema:Organization .
+
+bia:orcid a owl:DatatypeProperty ;
+    rdfs:label "research organiszation registry id"@en ;
+    rdfs:comment "Research Organiszation Registry ID"@en ;
+    rdfs:range schema:URL ;
+    rdfs:domain schema:Person .
+
+bia:affiliation a owl:ObjectProperty ;
+    rdfs:label "affiliation"@en ;
+    rdfs:comment 
+        """An Affiliation an Contributor is associated with. 
+        Note this is not quite the same as schema:affiliation, as contributor includes groups.
+        Both schema:affiliaiton and schema:subOrganization are probably rdfs:subPropertyOf bia:affiliation.""" ;
+    rdfs:domain bia:Study ;
+    rdfs:range rdfs: .
+
+bia:website a owl:DatatypeProperty ;
+    rdfs:label "website"@en ;
+    rdfs:comment "A link to a website which holds information about the subject."@en ;
+    rdfs:range schema:URL .
+
+bia:role a owl:DatatypeProperty ;
+    rdfs:label "role"@en ;
+    rdfs:comment "The role of the contributor in the creation of the study"@en ;
+    rdfs:domain bia:Contributor ;
+    rdfs:range xsd:string .
 
 ## Grants and funding
 
@@ -237,6 +276,47 @@ bia:Specimen a owl:Class ;
 
 # Properties
 
+bia:subject a owl:ObjectProperty ;
+    rdfs:label "subject"@en ;
+    rdfs:comment "The biological specimen that is the subject of the image."@en ;
+    rdfs:domain bia:CreationProcess ;
+    rdfs:range bia:Specimen .
+
+bia:imageAcquistionProtocol a owl:ObjectProperty ;
+    rdfs:label "image acquisition protocol"@en ;
+    rdfs:comment "The imaging protocol, describing the technique that was used to create the image."@en ;
+    rdfs:domain bia:CreationProcess ;
+    rdfs:range bia:ImageAcquistionProtocol .
+
+bia:protocol a owl:ObjectProperty ;
+    rdfs:label "image acquisition protocol"@en ;
+    rdfs:comment "A protocol which was followed that resulted in the creation of this new image from existing image data."@en ;
+    rdfs:domain bia:CreationProcess ;
+    rdfs:range bia:ImageAcquistionProtocol .
+
+bia:annotationMethod a owl:ObjectProperty ;
+    rdfs:label "annotation method"@en ;
+    rdfs:comment "The annotation method describing the process followed to create a new image from exsiting image data."@en ;
+    rdfs:domain bia:CreationProcess ;
+    rdfs:range bia:Image .
+
+bia:inputImage a owl:ObjectProperty ;
+    rdfs:label "input image"@en ;
+    rdfs:comment "An image used as input data for the creation of a new image."@en ;
+    rdfs:domain bia:CreationProcess ;
+    rdfs:range bia:Image .
+
+bia:imagingPreparationProtocol a owl:ObjectProperty ;
+    rdfs:label "imaging preparation protocol"@en ;
+    rdfs:comment "The protocol that was followed in order to perpare a biosample for imaging."@en ;
+    rdfs:domain bia:Specimen ;
+    rdfs:range bia:SpecimenImagingPreparationProtocol .
+
+bia:sampleOf  a owl:ObjectProperty ;
+    rdfs:label "imaging preparation protocol"@en ;
+    rdfs:comment "The biosample from which this specimen was created."@en ;
+    rdfs:domain bia:Specimen ;
+    rdfs:range bia:BioSample .
 
 ## Biosample, Taxon
 
