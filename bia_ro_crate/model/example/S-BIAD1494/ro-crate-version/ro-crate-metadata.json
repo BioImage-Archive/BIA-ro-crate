@@ -201,10 +201,10 @@
             "@id": "bia:protocol"
         },
         "annotation_method": {
-            "@id": "?"
+            "@id": "bia:annotationMethod"
         },
         "growth_protocol": {
-            "@id": "?"
+            "@id": "bia:growthProtocol"
         },
         "contributor": {
             "@id": "schema:author",

@@ -516,9 +516,16 @@ bia:scientificName a owl:DatatypeProperty ;
     rdfs:range rdfs:langString ;
     rdfs:domain bia:Taxon .
 
-bia:ncbiId a owl:ObjectProperty ;
+bia:ncbiId a owl:Dataproperty ;
     rdfs:label "ncbi id"@en ;
     rdfs:comment "ID in the NCBI taxon registry, formatted: NCBI:txid<ID number>."@en ;
+    rdfs:subPropertyOf dc:identifier ;
+    rdfs:range xsd:string ;
+    rdfs:domain bia:Taxon .
+
+bia:growthProtocol a owl:ObjectProperty ;
+    rdfs:label "growth protocl"@en ;
+    rdfs:comment "The protocol that was followed in order to create this biosample."@en ;
     rdfs:subPropertyOf dc:identifier ;
     rdfs:range xsd:string ;
     rdfs:domain bia:Taxon .
