@@ -583,7 +583,7 @@
             "_:timepoint": "mES"
         },
         {
-            "@id": "DDNA_damage/Nup133KO/mES/Rep2/",
+            "@id": "DNA_damage/Nup133KO/mES/Rep2/",
             "@type": ["bia:Dataset", "schema:Dataset"],
             "title": "Nup133K0 mES replicate-2",
             "association": [
