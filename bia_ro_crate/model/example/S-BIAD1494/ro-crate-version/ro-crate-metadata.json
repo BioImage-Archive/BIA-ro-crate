@@ -1,7 +1,6 @@
 {
     "@context": {
         "bia": "http://bia/",
-        "biashapes": "http://bia-shapes/",
         "schema": "http://schema.org/",
         "name": {
             "@id": "schema:name"
@@ -26,7 +25,7 @@
             "@id": "bia:role"
         },
         "address": {
-            "@id": "schmea:address"
+            "@id": "schema:address"
         },
         "website": {
             "@id": "bia:website"
@@ -311,7 +310,7 @@
                 "DNA_damage/Nup133KO/NP_2h/Rep2/",
                 "DNA_damage/Nup133KO/NP_2h/Rep3/",
                 "DNA_damage/Nup133KO/mES/Rep1/",
-                "DDNA_damage/Nup133KO/mES/Rep2/",
+                "DNA_damage/Nup133KO/mES/Rep2/",
                 "DNA_damage/Nup133KO/mES/Rep3/",
                 "DNA_damage/WT/NP_24h/Rep1/",
                 "DNA_damage/WT/NP_24h/Rep2/",
