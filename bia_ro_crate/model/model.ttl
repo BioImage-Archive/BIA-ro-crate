@@ -492,7 +492,7 @@ bia:experimentalVariableDescription a owl:DatatypeProperty ;
     rdfs:range rdfs:langString ;
     rdfs:domain bia:BioSample .
 
-bia:extrinsicVariableDescription a ow:DatatypeProperty ;
+bia:extrinsicVariableDescription a owl:DatatypeProperty ;
     rdfs:label "extrinsic variable description"@en ;
     rdfs:comment "External treatment (e.g. reagent)."@en ;
     rdfs:range rdfs:langString ;
