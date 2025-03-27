@@ -4,9 +4,8 @@ import bia_shared_datamodels.semantic_models as sm
 import bia_shared_datamodels.bia_data_model as dm
 from typing_extensions import Annotated, Optional
 
-from .pydantic_ld.ROCrateModel import ROCrateModel
+from bia_ro_crate.ro_crate_to_bia.pydantic_ld.ROCrateModel import ROCrateModel
 from bia_ro_crate.ro_crate_to_bia.pydantic_ld.FieldContext import FieldContext
-
 
 # Studies and Publications
 
@@ -22,11 +21,11 @@ class Study(ROCrateModel):
         Field()
     )
     keyword: Annotated[list[str], FieldContext("http://schema.org/keywords")] = Field(
-        default_factory=[]
+        default_factory=list()
     )
     acknowledgement: Annotated[
-        str, FieldContext("http://schema.org/acknowledgements")
-    ] = Field()
+        Optional[str], FieldContext("http://schema.org/acknowledgements")
+    ] = Field(default=None)
     hasPart: Annotated[
         list[str], FieldContext("http://schema.org/hasPart", isIdField=True)
     ] = Field()
@@ -37,6 +36,8 @@ class Study(ROCrateModel):
 class Publication(ROCrateModel):
     title: Annotated[str, FieldContext("http://schema.org/name")] = Field()
     author_names: Annotated[str, FieldContext("http://bia/authorNames")] = Field()
+
+    model_config = ConfigDict(model_type="http://bia/Publication")
 
 
 # Contributors and Affiliations
@@ -72,9 +73,13 @@ class Affiliaiton(ROCrateModel):
 class Grant(ROCrateModel):
     pass
 
+    model_config = ConfigDict(model_type="http://bia/Grant")
+
 
 class FundingBody(ROCrateModel):
     pass
+
+    model_config = ConfigDict(model_type="http://bia/FundingBody")
 
 
 # External References
@@ -83,6 +88,8 @@ class FundingBody(ROCrateModel):
 class ExternalReference(ROCrateModel):
     link: Annotated[AnyUrl, FieldContext("http://schema/url")] = Field()
     linkDescription: Annotated[str, FieldContext("http://schema/description")] = Field()
+
+    model_config = ConfigDict(model_type="http://bia/ExternalReference")
 
 
 # Datasets and associations?
@@ -96,7 +103,8 @@ class Dataset(ROCrateModel):
 
 
 class Association(ROCrateModel):
-    pass
+
+    model_config = ConfigDict(model_type="http://bia/Association")
 
 
 # Images, Image represntations
@@ -154,9 +162,9 @@ class BioSample(ROCrateModel):
     intrinsic_variable_description: Annotated[
         str, FieldContext("http://bia/intrinsicVariableDescription")
     ] = Field()
-    taxon: Annotated[list[str], FieldContext("http://bia/taxon", isIdField=True)] = (
-        Field()
-    )
+    organism_classification: Annotated[
+        list[str], FieldContext("http://bia/taxon", isIdField=True)
+    ] = Field()
 
     model_config = ConfigDict(model_type="http://bia/BioSample")
 

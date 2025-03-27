@@ -1,7 +1,7 @@
 from uuid import UUID
 from bia_ro_crate.ro_crate_to_bia.pydantic_ld.ROCrateModel import ROCrateModel
-from bia_shared_datamodels import uuid_creation, semantic_models
-from bia_integrator_api.models import Study as APIStudy
+from bia_shared_datamodels import uuid_creation
+from bia_integrator_api.models import SpecimenImagingPreparationProtocol as APISIIP
 import bia_ro_crate.ro_crate_to_bia.ingest_models as ROCrateModels
 from pydantic_ld.ROCrateModel import ROCrateModel
 
@@ -28,11 +28,11 @@ def convert_specimen_imaging_preparation_protocol(
     ro_crate_sipp: ROCrateModels.SpecimenImagingPreparationProtocol,
     crate_objects_by_id: dict[str, ROCrateModel],
     study_uuid: UUID,
-) -> semantic_models.SpecimenImagingPreparationProtocol:
+) -> APISIIP:
     sipp = {
         "uuid": uuid_creation.create_specimen_imaging_preparation_protocol_uuid(ro_crate_sipp.id, study_uuid),
-        "title": ro_crate_sipp.title,
+        "title_id": ro_crate_sipp.title,
         "protocol_description": ro_crate_sipp.protocol_description,
     }
 
-    return semantic_models.SpecimenImagingPreparationProtocol(**sipp)
+    return APISIIP(**sipp)

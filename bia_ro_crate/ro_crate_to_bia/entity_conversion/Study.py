@@ -83,3 +83,24 @@ def convert_affiliation(
         affiliation_dictionary["rorid"] = affiliation.id
 
     return semantic_models.Affiliation(**affiliation_dictionary)
+
+
+def convert_external_reference(
+    external_reference: ROCrateModels.ExternalReference,
+) -> semantic_models.ExternalReference:
+
+    link_type_map = {}
+
+    link_type = None
+    for key in link_type_map.keys():
+        if str(external_reference.link).startswith(key):
+            link_type = link_type_map[key]
+            break
+
+    external_reference_dictionary = {
+        "link": external_reference.link,
+        "description": external_reference.linkDescription,
+        "link_type": link_type,
+    }
+
+    return semantic_models.ExternalReference(**external_reference_dictionary)

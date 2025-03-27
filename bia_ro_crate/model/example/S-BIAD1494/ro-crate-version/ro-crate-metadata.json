@@ -269,19 +269,28 @@
             "@id": "bia:specimen",
             "@type": "@id"
         },
-        "_": {
-            "@id": "_"
+        "channel_number": {
+            "@id": "bia:channelNumber"
         },
-        "_:replicate": {
-            "rdfs:comment": "Which replicate of the specimen was imaged."
+        "replicate": {
+            "@id": "_:replicate"
         },
-        "_:timepoint": {
-            "rdfs:comment": "How long after sample preparation was the image taken."
+        "timepoint": {
+            "@id": "_:timepoint"
+        },
+        "CreativeWork": {
+            "@id": "schema:CreativeWork"
+        },
+        "Dataset": {
+            "@id": "schema:Dataset"
+        },
+        "File": {
+            "@id": "schema:File"
         }
     },
     "@graph": [
         {
-            "@type": "schema:CreativeWork",
+            "@type": "CreativeWork",
             "@id": "ro-crate-metadata.json",
             "conformsTo": {
                 "@id": "https://w3id.org/ro/crate/1.1"
@@ -292,8 +301,8 @@
         },
         {
             "@id": "./",
-            "@type": ["bia:Study", "schema:Dataset" ],
-            "name": "Immunofluorescence staining images of mouse embryonic stem cells and neuronal precursors with y-H2AX and 53BP1 foci",
+            "@type": ["bia:Study", "Dataset" ],
+            "title": "Immunofluorescence staining images of mouse embryonic stem cells and neuronal precursors with y-H2AX and 53BP1 foci",
             "datePublished": "2024-01-23",
             "license": "https://creativecommons.org/licenses/by/4.0/",
             "description": "Wild-type and Nup133-deficient cells were fixed with 4% PFA and subjected to immunofluorescence staining experiments to assess the accumulation of DNA damage. mouse embryonic stem cells and differentiating neuronal precursors at two different time points in the neuronal differentiation (2h and 24h) were used for the experiments.",
@@ -303,22 +312,54 @@
                 "https://orcid.org/0000-0002-7397-1321"
             ],
             "hasPart": [
-                "DNA_damage/Nup133K0/Np_24h/Rep1/",
-                "DNA_damage/Nup133K0/Np_24h/Rep2/",
-                "DNA_damage/Nup133K0/Np_24h/Rep3/",
-                "DNA_damage/Nup133KO/NP_2h/Rep1/",
-                "DNA_damage/Nup133KO/NP_2h/Rep2/",
-                "DNA_damage/Nup133KO/NP_2h/Rep3/",
-                "DNA_damage/Nup133KO/mES/Rep1/",
-                "DNA_damage/Nup133KO/mES/Rep2/",
-                "DNA_damage/Nup133KO/mES/Rep3/",
-                "DNA_damage/WT/NP_24h/Rep1/",
-                "DNA_damage/WT/NP_24h/Rep2/",
-                "DNA_damage/WT/NP_24h/Rep3/",
-                "DNA_damage/WT/NP_2h/Rep1/",
-                "DNA_damage/WT/NP_2h/Rep2/",
-                "DNA_damage/WT/NP_2h/Rep3/",
-                "DNA_damage/Sample_Image_NPKO133_B1_24h_H2AX-488_53BP1-594_001.tif"
+                {
+                    "@id": "DNA_damage/Nup133K0/Np_24h/Rep1/"
+                },
+                {
+                    "@id": "DNA_damage/Nup133K0/Np_24h/Rep2/"
+                },
+                {
+                    "@id": "DNA_damage/Nup133K0/Np_24h/Rep3/"
+                },
+                {
+                    "@id": "DNA_damage/Nup133KO/NP_2h/Rep1/"
+                },
+                {
+                    "@id": "DNA_damage/Nup133KO/NP_2h/Rep2/"
+                },
+                {
+                    "@id": "DNA_damage/Nup133KO/NP_2h/Rep3/"
+                },
+                {
+                    "@id": "DNA_damage/Nup133KO/mES/Rep1/"
+                },
+                {
+                    "@id": "DNA_damage/Nup133KO/mES/Rep2/"
+                },
+                {
+                    "@id": "DNA_damage/Nup133KO/mES/Rep3/"
+                },
+                {
+                    "@id": "DNA_damage/WT/NP_24h/Rep1/"
+                },
+                {
+                    "@id": "DNA_damage/WT/NP_24h/Rep2/"
+                },
+                {
+                    "@id": "DNA_damage/WT/NP_24h/Rep3/"
+                },
+                {
+                    "@id": "DNA_damage/WT/NP_2h/Rep1/"
+                },
+                {
+                    "@id": "DNA_damage/WT/NP_2h/Rep2/"
+                },
+                {
+                    "@id": "DNA_damage/WT/NP_2h/Rep3/"
+                },
+                {
+                    "@id": "DNA_damage/Sample_Image_NPKO133_B1_24h_H2AX-488_53BP1-594_001.tif"
+                }
             ],
             "sample_image": [
                 "DNA_damage/Sample_Image_NPKO133_B1_24h_H2AX-488_53BP1-594_001.tif"
@@ -351,7 +392,9 @@
             "@id": "Wild type mouse stem cells",
             "@type": "bia:BioSample",
             "biological_entity_description": "mouse embryonic stem cells and differentiated neuronal precursors from wild-type HM1 line.",
-            "organism_classification": "NCBI:txid10090"
+            "organism_classification": {
+                "@id": "NCBI:txid10090"
+            }
         },
         {
             "@id": "NCBI:txid10090",
@@ -364,27 +407,30 @@
             "@type": "bia:SpecimentImagingPreparationProtocol",
             "protocol_description": "For mES cell culture, the wild-type HM1 line and the HM1-derived Nup133-/- clone (#14) described previously were used. Mouse embryonic stem cell medium was prepared by supplementing EmbryoMax® DMEM (Millipore, SLM-220-B) with 15% FBS (Gibco, 10270-106), 2 mM L-Glutamine (Gibco, 25030-024), 1 × non-essential amino acids (Gibco, 11140-035 or 11140-050), 1 × EmbryoMax® nucleosides (Millipore, ES-008-D), 110 μM β-mercaptoethanol (Gibco, 21985-023) and 1 × penicillin/streptomycin (Gibco, 15070-063). mES cells were cultured on mitomycin-treated mouse embryonic fibroblasts (feeder cells) plated on 0.1% gelatin (Sigma-Aldrich) in mouse embryonic stem cell medium supplemented with leukemia inhibitory factor (LIF, ESGRO, Millipore, final 1000 U/ml), and kept at 37°C with 5% CO2. Cells were used within eight passages after thawing frozen vials to ensure the quality of the stem cell culture.\nThe neural progenitor differentiation was performed following the previously published protocol. Briefly, after two passages on feeder cells, mES cells were transferred to gelatin-coated plates without feeder cells, and cultured for two to four passages in the presence of LIF. Subsequently, cells were trypsinized and 4 × 106 cells were transferred to non-coated 10-cm Petri dishes (Greiner, 633102) and cultured for eight days within DMEM supplemented with 10% FBS (Gibco, 10270-106), 2 mM L-glutamine (Gibco, 25030-024), 1 × MEM non-essential amino acids (Gibco, 11140-035) and 100 μM β-mercaptoethanol (Gibco, 31350-010) without LIF. The culture medium was changed every two days, and after four days, 5 μM retinoic acid (Sigma, R2625) was added to the medium. After eight days of culture, the aggregates of neural progenitors were dissociated by trypsinization at 37°C for 5 min in the water bath, and the dissociated cells were either immediately used for cryo-EM grid preparation as described below, frozen within the medium supplemented with 10% DMSO and stored until use, or directly used for subsequent neuronal differentiation. For the neuronal differentiation, dissociated cells were seeded on glass bottom plates (ibidi, 80827) coated with poly-DL-ornithine (Sigma, P8638) and laminin (Roche, 11243217001) at approximately 1–2 × 105 cells/cm2, and cultured in N2 medium (1:1 mixture of DMEM (Gibco, 21969-035) and Ham’s F-12 nutrient mix (Gibco, 21765-029), supplemented with 2 mM L-glutamine, 25 μg/ml insulin (Sigma, I6634), 50 μg/ml transferrin (Sigma, T1147), 20 nM progesterone (Sigma, P8783), 100 nM putrescine (Sigma, P5780), 30 nM sodium-selenite (Sigma, 214485), 50 μg/ml BSA (Sigma, A9418), and 1 × penicillin/streptomycin (Gibco, 15140-122)) for two days. The medium was changed to fresh N2 medium 2 h and one day after plating.\nFor mES samples, feeder cells were first seeded on 8-well polymer bottom chambered slides (ibidi, 80826) coated with 0.1% gelatin at a seeding density of 2 × 104 cells/cm2. mES cells were seeded on feeder cells at a density of 4 × 104 cells/cm2, and cultured for 24h before fixation with 4% paraformaldehyde for 15 min. For neuronal precursor samples, cells were seeded on 8-well glass bottom chambered slides (ibidi, 80827) coated with poly-LD-ornithine and laminin as described above, and fixed at the indicated time point after seeding in 4% paraformaldehyde for 15 min. For staining, cells were permeabilized in 0.1% Triton in PBS for 10 min, washed three times with PBS for 5 min each, and blocked for 30 min using 3% BSA-containing PBS (PBS/BSA). After blocking, primary antibodies diluted in PBS/BSA were applied, and samples were incubated overnight at 4°C. After washing the samples with PBS, samples were incubated with secondary antibodies diluted in PBS for 2 h at room temperature. DNA was stained with 1 μM of Hoechst 33342 (Thermo Fisher Scientific, 62249).",
             "signal_channel_information": [
-                "1",
-                "2",
-                "3"
+                "Hoechst33342",
+                "anti-53BP1",
+                "nti-yH2AX"
             ]
         },
         {
-            "@id": "1",
+            "@id": "Hoechst33342",
             "@type": "bia:SignalChannelInfo",
+            "channel_number": "1",
             "signal_contrast_mechanism_description": "fluorescent dye",
             "channel_content_description": "Hoechst33342",
             "channel_biological_entity": "DNA"
         },
         {
-            "@id": "2",
+            "@id": "anti-53BP1",
             "@type": "bia:SignalChannelInfo",
+            "channel_number": "2",
             "signal_contrast_mechanism_description": "antibody",
             "channel_content_description": "anti-53BP1 from Novus-Biologicals (NB100-304SS) with Alexa-Fluor-594"
         },
         {
-            "@id": "3",
+            "@id": "nti-yH2AX",
             "@type": "bia:SignalChannelInfo",
+            "channel_number": "3",
             "signal_contrast_mechanism_description": "antibody",
             "channel_content_description": "nti-yH2AX from merck (05-636) with Alexa-Fluor-Plus-488"
         },
@@ -399,7 +445,7 @@
         {
             "@id":  "DNA_damage/Nup133K0/Np_24h/Rep3/NPKO133_B3_24h_H2AX-488_53BP1-594_004.tif",
             "@type": [
-                "schema:File", "bia:Image"
+                "Dataset", "bia:Image"
             ],
             "creation_process": "_:cp0"
         },
@@ -423,7 +469,7 @@
         },
         {
             "@id": "DNA_damage/Nup133K0/Np_24h/Rep1/",
-            "@type": ["bia:Dataset", "schema:Dataset"],
+            "@type": ["bia:Dataset", "Dataset"],
             "title": "Nup133K0 24h replicate-1",
             "association": [
                 "_:a0"
@@ -441,15 +487,15 @@
             "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
-            "_:replicate": "replicate-1",
-            "_:timepoint": "24h"
+            "replicate": "replicate-1",
+            "timepoint": "24h"
         },
         {
             "@id": "DNA_damage/Nup133K0/Np_24h/Rep2/",
-            "@type": ["bia:Dataset", "schema:Dataset"],
+            "@type": ["bia:Dataset", "Dataset"],
             "title": "Nup133K0 24h replicate-2",
             "association": [
-                "_:a0"
+                "_:a1"
             ]
         },
         {
@@ -464,8 +510,8 @@
             "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
-            "_:replicate": "replicate-2",
-            "_:timepoint": "24h"
+            "replicate": "replicate-2",
+            "timepoint": "24h"
         },
         {
             "@id": "DNA_damage/Nup133K0/Np_24h/Rep3/",
@@ -487,8 +533,8 @@
             "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
-            "_:replicate": "replicate-3",
-            "_:timepoint": "24h"
+            "replicate": "replicate-3",
+            "timepoint": "24h"
         },
         {
             "@id": "DNA_damage/Nup133KO/NP_2h/Rep1/",
@@ -510,8 +556,8 @@
             "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
-            "_:replicate": "replicate-1",
-            "_:timepoint": "2h"
+            "replicate": "replicate-1",
+            "timepoint": "2h"
         },
         {
             "@id": "DNA_damage/Nup133KO/NP_2h/Rep2/",
@@ -533,8 +579,8 @@
             "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
-            "_:replicate": "replicate-2",
-            "_:timepoint": "2h"
+            "replicate": "replicate-2",
+            "timepoint": "2h"
         },
         {
             "@id": "DNA_damage/Nup133KO/NP_2h/Rep3/",
@@ -556,8 +602,8 @@
             "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
-            "_:replicate": "replicate-3",
-            "_:timepoint": "2h"
+            "replicate": "replicate-3",
+            "timepoint": "2h"
         },
         {
             "@id": "DNA_damage/Nup133KO/mES/Rep1/",
@@ -579,8 +625,8 @@
             "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
-            "_:replicate": "replicate-1",
-            "_:timepoint": "mES"
+            "replicate": "replicate-1",
+            "timepoint": "mES"
         },
         {
             "@id": "DNA_damage/Nup133KO/mES/Rep2/",
@@ -602,8 +648,8 @@
             "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
-            "_:replicate": "replicate-2",
-            "_:timepoint": "mES"
+            "replicate": "replicate-2",
+            "timepoint": "mES"
         },
         {
             "@id": "DNA_damage/Nup133KO/mES/Rep3/",
@@ -625,8 +671,8 @@
             "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
-            "_:replicate": "replicate-3",
-            "_:timepoint": "mES"
+            "replicate": "replicate-3",
+            "timepoint": "mES"
         },
         {
             "@id": "DNA_damage/WT/NP_24h/Rep1/",
@@ -648,8 +694,8 @@
             "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
-            "_:replicate": "replicate-1",
-            "_:timepoint": "24h"
+            "replicate": "replicate-1",
+            "timepoint": "24h"
         },
         {
             "@id": "DNA_damage/WT/NP_24h/Rep2/",
@@ -671,8 +717,8 @@
             "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
-            "_:replicate": "replicate-2",
-            "_:timepoint": "24h"
+            "replicate": "replicate-2",
+            "timepoint": "24h"
         },
         {
             "@id": "DNA_damage/WT/NP_24h/Rep3/",
@@ -694,8 +740,8 @@
             "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
-            "_:replicate": "replicate-3",
-            "_:timepoint": "24h"
+            "replicate": "replicate-3",
+            "timepoint": "24h"
         },
         {
             "@id": "DNA_damage/WT/NP_2h/Rep1/",
@@ -717,8 +763,8 @@
             "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
-            "_:replicate": "replicate-1",
-            "_:timepoint": "2h"
+            "replicate": "replicate-1",
+            "timepoint": "2h"
         },
         {
             "@id": "DNA_damage/WT/NP_2h/Rep2/",
@@ -740,8 +786,8 @@
             "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
-            "_:replicate": "replicate-2",
-            "_:timepoint": "2h"
+            "replicate": "replicate-2",
+            "timepoint": "2h"
         },
         {
             "@id": "DNA_damage/WT/NP_2h/Rep3/",
@@ -763,8 +809,8 @@
             "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
-            "_:replicate": "replicate-3",
-            "_:timepoint": "2h"
+            "replicate": "replicate-3",
+            "timepoint": "2h"
         },
         {
             "@id": "DNA_damage/WT/NP_2h/Rep1/",
@@ -786,8 +832,8 @@
             "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
-            "_:replicate": "replicate-1",
-            "_:timepoint": "mES"
+            "replicate": "replicate-1",
+            "timepoint": "mES"
         },
         {
             "@id": "DNA_damage/WT/NP_2h/Rep2/",
@@ -809,8 +855,8 @@
             "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
-            "_:replicate": "replicate-2",
-            "_:timepoint": "mES"
+            "replicate": "replicate-2",
+            "timepoint": "mES"
         },
         {
             "@id": "DNA_damage/WT/NP_2h/Rep3/",
@@ -832,8 +878,18 @@
             "associated_specimen_image_acquisition_protocol": [
                 "Confocal stack acquisition"
             ],
-            "_:replicate": "replicate-3",
-            "_:timepoint": "mES"
+            "replicate": "replicate-3",
+            "timepoint": "mES"
+        },
+        {
+            "@id": "_:replicate",
+            "@type": "rdf:Property",
+            "rdfs:comment": "Which replicate of the specimen was imaged."
+        },
+        {
+            "@id": "_:timepoint",
+            "@type": "rdf:Property",
+            "rdfs:comment": "How long after sample preparation was the image taken."
         }
     ]
 }

@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from rdflib.graph import Graph
 from rdflib.term import URIRef
 from rdflib import RDF, OWL
-from ..ld_context.ContextTerm import ContextTerm
+from bia_ro_crate.ro_crate_to_bia.ld_context.ContextTerm import ContextTerm
 from .FieldContext import FieldContext
 
 

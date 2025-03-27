@@ -1,7 +1,7 @@
 from uuid import UUID
 from bia_ro_crate.ro_crate_to_bia.pydantic_ld.ROCrateModel import ROCrateModel
-from bia_shared_datamodels import uuid_creation, semantic_models
-from bia_integrator_api.models import Study as APIStudy
+from bia_shared_datamodels import uuid_creation
+from bia_integrator_api.models import ImageAcquisitionProtocol as APIIAP
 import bia_ro_crate.ro_crate_to_bia.ingest_models as ROCrateModels
 from pydantic_ld.ROCrateModel import ROCrateModel
 
@@ -28,11 +28,11 @@ def convert_image_acquisition_protocol(
     ro_crate_iap: ROCrateModels.ImageAcquisitionProtocol,
     crate_objects_by_id: dict[str, ROCrateModel],
     study_uuid: UUID,
-) -> semantic_models.ImageAcquisitionProtocol:
+) -> APIIAP:
     iap = {
         "uuid": uuid_creation.create_image_acquisition_protocol_uuid(ro_crate_iap.id, study_uuid),
-        "title": ro_crate_iap.title,
+        "title_id": ro_crate_iap.title,
         "protocol_description": ro_crate_iap.protocol_description,
     }
 
-    return semantic_models.ImageAcquisitionProtocol(**iap)
+    return APIIAP(**iap)
