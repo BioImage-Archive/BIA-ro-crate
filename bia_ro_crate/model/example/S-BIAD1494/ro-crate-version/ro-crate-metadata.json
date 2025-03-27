@@ -304,7 +304,7 @@
             "@type": ["bia:Study", "Dataset" ],
             "title": "Immunofluorescence staining images of mouse embryonic stem cells and neuronal precursors with y-H2AX and 53BP1 foci",
             "datePublished": "2024-01-23",
-            "license": "https://creativecommons.org/licenses/by/4.0/",
+            "licence": "https://creativecommons.org/licenses/by/4.0/",
             "description": "Wild-type and Nup133-deficient cells were fixed with 4% PFA and subjected to immunofluorescence staining experiments to assess the accumulation of DNA damage. mouse embryonic stem cells and differentiating neuronal precursors at two different time points in the neuronal differentiation (2h and 24h) were used for the experiments.",
             "accession_id": "S-BIAD1494",
             "contributor": [
@@ -369,13 +369,19 @@
             "@type": "bia:Contributor",
             "display_name": "Reiya Taniguchi",
             "@id": "https://orcid.org/0000-0003-3862-8349",
-            "affiliation": "https://ror.org/0243gzr89"
+            "affiliation": {
+                "@id": "https://ror.org/0243gzr89"
+            }
         },
         {
             "@type": "bia:Contributor",
             "display_name": "Martin Beck",
             "@id": "https://orcid.org/0000-0002-7397-1321",
-            "affiliation": "https://ror.org/0243gzr89"
+            "affiliation": [
+                {
+                    "@id": "https://ror.org/0243gzr89"
+                }
+            ] 
         },
         {
             "@id": "https://ror.org/0243gzr89",
@@ -386,15 +392,21 @@
             "@id": "Nup133 mouse stem cells",
             "@type": "bia:BioSample",
             "biological_entity_description": "mouse embryonic stem cells and differentiated neuronal precursors from HM1-derived Nup133-/- clone.",
-            "organism_classification": "NCBI:txid10090"
+            "organism_classification": [
+                {
+                    "@id": "NCBI:txid10090"
+                }
+            ] 
         },
         {
             "@id": "Wild type mouse stem cells",
             "@type": "bia:BioSample",
             "biological_entity_description": "mouse embryonic stem cells and differentiated neuronal precursors from wild-type HM1 line.",
-            "organism_classification": {
-                "@id": "NCBI:txid10090"
-            }
+            "organism_classification": [
+                {
+                    "@id": "NCBI:txid10090"
+                }
+            ]
         },
         {
             "@id": "NCBI:txid10090",
@@ -453,17 +465,15 @@
             "@id": "_:cp0",
             "@type": "bia:CreationProcess",
             "image_acquisition_protocol": "Confocal stack acquisition",
-            "specimen": [
-                "_:sp0"
-            ],
-            "imaging_preparation_protocol": [
-                "Mouse embryonic stem cell prepration"
-            ]
+            "specimen": "_:sp0"
         },
         {
             "@id": "_:sp0",
-            "@type": "bia:CreationProcess",
+            "@type": "bia:Specimen",
             "biological_entity": [
+                "Mouse embryonic stem cell prepration"
+            ],
+            "imaging_preparation_protocol": [
                 "Mouse embryonic stem cell prepration"
             ]
         },
@@ -884,12 +894,14 @@
         {
             "@id": "_:replicate",
             "@type": "rdf:Property",
-            "rdfs:comment": "Which replicate of the specimen was imaged."
+            "name": "replicate",
+            "description": "Which replicate of the specimen was imaged."
         },
         {
             "@id": "_:timepoint",
             "@type": "rdf:Property",
-            "rdfs:comment": "How long after sample preparation was the image taken."
+            "name": "timepoint",
+            "description": "How long after sample preparation was the image taken."
         }
     ]
 }

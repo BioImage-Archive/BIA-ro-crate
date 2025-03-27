@@ -35,6 +35,7 @@ class ContextTerm:
 
         context_term |= {"@id": id}
 
+        # TODO: make whether type mapping is used controllable by this method.
         if self.type_mapping:
             context_term |= {"@type": self.type_mapping}
         return context_term

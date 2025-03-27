@@ -2,12 +2,12 @@ from .LDModel import LDModel
 from .FieldContext import FieldContext
 from pydantic import Field
 from rdflib import RDF, URIRef
-from typing import Annotated
+from typing import Annotated, Union
 
 
 class ROCrateModel(LDModel):
     id: Annotated[str, FieldContext(RDF.type)] = Field(alias="@id")
-    type: Annotated[str, FieldContext(RDF.type)] = Field(alias="@type")
+    type: Annotated[Union[str, list[str]], FieldContext(RDF.type)] = Field(alias="@type")
 
     @classmethod
     def get_model_type(cls) -> URIRef:

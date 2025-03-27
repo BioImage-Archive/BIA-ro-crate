@@ -1,10 +1,13 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from rdflib.graph import Graph
 from rdflib.term import URIRef
 from rdflib import RDF, OWL
 from bia_ro_crate.ro_crate_to_bia.ld_context.ContextTerm import ContextTerm
 from .FieldContext import FieldContext
 
+
+class ObjectReference(BaseModel):
+    id: str = Field(alias="@id")
 
 class LDModel(BaseModel):
 

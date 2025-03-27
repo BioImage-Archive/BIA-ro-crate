@@ -13,13 +13,14 @@ python = "^3.10,<3.12"
 pydantic = "^2.4.0"
 bia-shared-datamodels = { git = "https://github.com/BioImage-Archive/bia-integrator.git", subdirectory = "bia-shared-datamodels" }
 bia-integrator-api = { git = "https://github.com/BioImage-Archive/bia-integrator.git", subdirectory = "clients/python", branch = "main" }
-ome2024-ngff-challenge = { git = "https://github.com/ome/ome2024-ngff-challenge.git", branch = "main" }
+#ome2024-ngff-challenge = { git = "https://github.com/ome/ome2024-ngff-challenge.git", branch = "main" } this depend on rocrate 0.10 and so is incompatible with the rocrate version listed below
 
 typer = "^0.12.5"
-rocrate = "^0.10.0"
+rocrate = "^0.13"
 linkml = "^1.8.7"
 roc-validator = "^0.6.1"
 deepdiff = "^8.3.0"
+pyld = "^2.0.4"
 
 
 [tool.poetry.group.dev.dependencies]

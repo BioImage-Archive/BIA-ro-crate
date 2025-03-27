@@ -10,7 +10,6 @@ from bia_ro_crate.ro_crate_to_bia.entity_conversion import (
     AnnotationMethod,
     BioSample,
     Dataset,
-    FileReference,
     Image,
     ImageAcquisitionProtocol,
     Protocol,
