@@ -1,8 +1,8 @@
 from .bia_client import api_client
 import logging
 from bia_integrator_api import models
-from ome2024_ngff_challenge.zarr_crate.rembi_extension import Biosample, ImageAcquistion, Specimen
-from ome2024_ngff_challenge.zarr_crate.zarr_extension import ZarrCrate
+from bia_ro_crate.bia_to_zarr_crate.zarr_crate.rembi_extension import Biosample, ImageAcquistion, Specimen
+from bia_ro_crate.bia_to_zarr_crate.zarr_crate.zarr_extension import ZarrCrate
 from bia_ro_crate.licences import to_url
 
 logger = logging.getLogger("__main__." + __name__)

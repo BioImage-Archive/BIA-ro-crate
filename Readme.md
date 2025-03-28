@@ -3,7 +3,6 @@ A CLI tool to convert between BioImage Archive API objects and RO-crate (specifi
 
 
 ## Install
-NB - must use python 3.10
 ```
 poetry env use python3.10
 poetry install
