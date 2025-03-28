@@ -358,6 +358,15 @@
                     "@id": "DNA_damage/WT/NP_2h/Rep3/"
                 },
                 {
+                    "@id": "DNA_damage/WT/mES/Rep1/"
+                },
+                {
+                    "@id": "DNA_damage/WT/mES/Rep2/"
+                },
+                {
+                    "@id": "DNA_damage/WT/mES/Rep3/"
+                },
+                {
                     "@id": "DNA_damage/Sample_Image_NPKO133_B1_24h_H2AX-488_53BP1-594_001.tif"
                 }
             ],
@@ -428,7 +437,7 @@
         },
         {
             "@id": "Hoechst33342",
-            "@type": "bia:SignalChannelInfo",
+            "@type": "bia:SignalChannelInformation",
             "channel_number": "1",
             "signal_contrast_mechanism_description": "fluorescent dye",
             "channel_content_description": "Hoechst33342",
@@ -436,14 +445,14 @@
         },
         {
             "@id": "anti-53BP1",
-            "@type": "bia:SignalChannelInfo",
+            "@type": "bia:SignalChannelInformation",
             "channel_number": "2",
             "signal_contrast_mechanism_description": "antibody",
             "channel_content_description": "anti-53BP1 from Novus-Biologicals (NB100-304SS) with Alexa-Fluor-594"
         },
         {
             "@id": "nti-yH2AX",
-            "@type": "bia:SignalChannelInfo",
+            "@type": "bia:SignalChannelInformation",
             "channel_number": "3",
             "signal_contrast_mechanism_description": "antibody",
             "channel_content_description": "nti-yH2AX from merck (05-636) with Alexa-Fluor-Plus-488"
@@ -453,8 +462,8 @@
             "@type": "bia:ImageAcquisitionProtocol",
             "protocol_description": "Images were acquired using a 63×/1.40 oil objective. 25 Z stacks were acquired with 0.6 um intervals. Bidirectional image acquisition with scan speed of 400 was used for the data acquisition. Line average was set to 4.",
             "imaging_instrument_description": "Stellaris 5 confocal microscope",
-            "imaging_method_name": "confocal microscopy",
-            "fbbi_id": "fbbi_00000251"
+            "imaging_method_name": ["confocal microscopy"],
+            "fbbi_id": ["fbbi_00000251"]
         },
         {
             "@id":  "DNA_damage/Nup133K0/Np_24h/Rep3/NPKO133_B3_24h_H2AX-488_53BP1-594_004.tif",
@@ -825,7 +834,7 @@
             "timepoint": "2h"
         },
         {
-            "@id": "DNA_damage/WT/NP_2h/Rep1/",
+            "@id": "DNA_damage/WT/mES/Rep1/",
             "@type": ["bia:Dataset", "Dataset"],
             "title": "Wild Type mES replicate-1",
             "association": [
@@ -848,7 +857,7 @@
             "timepoint": "mES"
         },
         {
-            "@id": "DNA_damage/WT/NP_2h/Rep2/",
+            "@id": "DNA_damage/WT/mES/Rep2/",
             "@type": ["bia:Dataset", "Dataset"],
             "title": "Wild Type mES replicate-2",
             "association": [
@@ -871,7 +880,7 @@
             "timepoint": "mES"
         },
         {
-            "@id": "DNA_damage/WT/NP_2h/Rep3/",
+            "@id": "DNA_damage/WT/mES/Rep3/",
             "@type": ["bia:Dataset", "Dataset"],
             "title": "Wild Type mES replicate-3",
             "association": [

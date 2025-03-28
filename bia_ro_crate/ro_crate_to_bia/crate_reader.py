@@ -1,22 +1,12 @@
 import json
 import os
 from pathlib import Path
-from pydantic_ld.ROCrateModel import ROCrateModel
+from bia_ro_crate.ro_crate_to_bia.pydantic_ld.ROCrateModel import ROCrateModel
 from rocrate.rocrate import ROCrate
 import bia_ro_crate.ro_crate_to_bia.ingest_models as ingest_models
 import inspect
 import pyld
-from bia_ro_crate.ro_crate_to_bia.entity_conversion import (
-    AnnotationMethod,
-    BioSample,
-    Dataset,
-    Image,
-    ImageAcquisitionProtocol,
-    Protocol,
-    Specimen,
-    SpecimenImagingPreparationProtocol,
-    Study,
-)
+
 
 def read_json_from_ro_crate(crate_path: str) -> dict:
     crate_path: Path = Path(crate_path)
@@ -46,7 +36,8 @@ def load_entities(data: dict) -> dict[str, ROCrateModel]:
     crate_objects_by_id = {}
     classes = inspect.getmembers(
         ingest_models,
-        lambda member: inspect.isclass(member) and member.__module__ == "bia_ro_crate.ro_crate_to_bia.ingest_models",
+        lambda member: inspect.isclass(member)
+        and member.__module__ == "bia_ro_crate.ro_crate_to_bia.ingest_models",
     )
 
     for entity in entities:
@@ -101,29 +92,3 @@ def expand_entity(entity: dict, context: dict) -> str:
     expanded = pyld.jsonld.expand(document)
     assert len(expanded) == 1
     return expanded[0]
-
-
-# Example usage
-if __name__ == "__main__":
-    crate_path = (
-        Path(__file__).parents[1]
-        / "model"
-        / "example"
-        / "S-BIAD1494"
-        / "ro-crate-version"
-    )
-
-    crate = crate_read(crate_path)
-
-    entities = process_ro_crate(crate_path)
-
-
-    Study.create_api_study(entities)
-
-    study_uuid = "S-BIAD1494"
-
-    AnnotationMethod.create_api_image_acquisition_protocol(entities, study_uuid)
-    Protocol.create_api_protocol(entities, study_uuid)
-    BioSample.create_api_bio_sample(entities, study_uuid)
-    ImageAcquisitionProtocol.create_api_image_acquisition_protocol(entities, study_uuid)
-    SpecimenImagingPreparationProtocol.create_api_specimen_imaging_preparation_protocol(entities, study_uuid)

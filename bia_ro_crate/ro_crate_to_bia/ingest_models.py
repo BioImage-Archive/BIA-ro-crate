@@ -89,7 +89,9 @@ class FundingBody(ROCrateModel):
 
 class ExternalReference(ROCrateModel):
     link: Annotated[AnyUrl, FieldContext("http://schema/url")] = Field()
-    linkDescription: Annotated[str, FieldContext("http://schema/description")] = Field()
+    linkDescription: Annotated[
+        Optional[str], FieldContext("http://schema/description")
+    ] = Field(default=None)
 
     model_config = ConfigDict(model_type="http://bia/ExternalReference")
 
@@ -188,7 +190,9 @@ class Taxon(ROCrateModel):
 
 
 class Protocol(ROCrateModel):
-    title: Annotated[Optional[str], FieldContext("http://schema.org/name")] = Field(default=None)
+    title: Annotated[Optional[str], FieldContext("http://schema.org/name")] = Field(
+        default=None
+    )
     protocol_description: Annotated[
         str, FieldContext("http://schema.org/description")
     ] = Field()
@@ -201,7 +205,9 @@ class SpecimenImagingPreparationProtocol(Protocol):
         list[str], FieldContext("http://bia/signalChannelInformation", isIdField=True)
     ] = Field(default_factory=list)
 
-    model_config = ConfigDict(model_type="http://bia/SpecimenImagingPreparationProtocol")
+    model_config = ConfigDict(
+        model_type="http://bia/SpecimenImagingPreparationProtocol"
+    )
 
 
 class SignalChannelInformation(ROCrateModel):
@@ -227,10 +233,12 @@ class ImageAcquisitionProtocol(Protocol):
     ] = Field()
     imaging_method_name: Annotated[
         list[str], FieldContext("http://bia/imagingMethodName")
-    ] = Field()
-    fbbi_id: Annotated[str, FieldContext("http://bia/fbbiId")] = Field()
+    ] = Field(default_factory=list)
+    fbbi_id: Annotated[list[str], FieldContext("http://bia/fbbiId")] = Field(
+        default=list
+    )
 
-    model_config = ConfigDict(model_type="http://bia/ImageAcquitisionProtocol")
+    model_config = ConfigDict(model_type="http://bia/ImageAcquisitionProtocol")
 
 
 class AnnotationMethod(Protocol):

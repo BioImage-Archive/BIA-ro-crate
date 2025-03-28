@@ -1,14 +1,13 @@
 from uuid import UUID
 from bia_ro_crate.ro_crate_to_bia.pydantic_ld.ROCrateModel import ROCrateModel
 from bia_shared_datamodels import uuid_creation
-from bia_integrator_api.models import SpecimenImagingPreparationProtocol as APISIIP
+import bia_integrator_api.models as APIModels
 import bia_ro_crate.ro_crate_to_bia.ingest_models as ROCrateModels
-from pydantic_ld.ROCrateModel import ROCrateModel
 
 
 def create_api_specimen_imaging_preparation_protocol(
     crate_objects_by_id: dict[str, ROCrateModel], study_uuid: str
-) -> None:
+) -> list[APIModels.SpecimenImagingPreparationProtocol]:
     ro_crate_sipp = (
         obj
         for obj in crate_objects_by_id.values()
@@ -23,20 +22,45 @@ def create_api_specimen_imaging_preparation_protocol(
             )
         )
 
-    print(sipp_list)
+    return sipp_list
 
 
 def convert_specimen_imaging_preparation_protocol(
     ro_crate_sipp: ROCrateModels.SpecimenImagingPreparationProtocol,
     crate_objects_by_id: dict[str, ROCrateModel],
     study_uuid: UUID,
-) -> APISIIP:
+) -> APIModels.SpecimenImagingPreparationProtocol:
+
+    title = None
+    if ro_crate_sipp.title:
+        title = ro_crate_sipp.title
+    elif ro_crate_sipp.id:
+        title = ro_crate_sipp.id
+
+
+    signal_channel_info_list = []
+    for signal_channel_info_id in ro_crate_sipp.signal_channel_information:
+        signal_channel_info_list.append(convert_signal_channel_info(crate_objects_by_id[signal_channel_info_id]))
+
     sipp = {
-        "uuid": uuid_creation.create_specimen_imaging_preparation_protocol_uuid(
-            ro_crate_sipp.id, study_uuid
+        "uuid": str(
+            uuid_creation.create_specimen_imaging_preparation_protocol_uuid(
+                ro_crate_sipp.id, study_uuid
+            )
         ),
-        "title_id": ro_crate_sipp.title,
+        "title_id": title,
         "protocol_description": ro_crate_sipp.protocol_description,
+        "version": 1,
+        "signal_channel_information": signal_channel_info_list
     }
 
-    return APISIIP(**sipp)
+    return APIModels.SpecimenImagingPreparationProtocol(**sipp)
+
+
+def convert_signal_channel_info(ro_crate_sci: ROCrateModels.SignalChannelInformation) -> APIModels.SignalChannelInformation:
+    sci = {
+        "signal_contrast_mechanism_description": ro_crate_sci.signal_contrast_mechanism_description,
+        "channel_biological_entity": ro_crate_sci.channel_biological_entity,
+        "channel_content_description": ro_crate_sci.channel_content_description,
+    }
+    return APIModels.SignalChannelInformation(**sci)
