@@ -9,14 +9,7 @@ jobs:
         python-version: ["3.11"]
         poetry-version: ["1.4.2"]
         os: [ubuntu-20.04, macos-latest, windows-latest]
-        project:
-          [
-            bia_ro_crate,
-          ]
     runs-on: ${{ matrix.os }}
-    defaults:
-      run:
-        working-directory: ${{ matrix.project }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
