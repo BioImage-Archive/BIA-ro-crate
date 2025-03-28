@@ -9,6 +9,7 @@ from .FieldContext import FieldContext
 class ObjectReference(BaseModel):
     id: str = Field(alias="@id")
 
+
 class LDModel(BaseModel):
 
     @classmethod

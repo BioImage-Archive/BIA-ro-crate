@@ -9,18 +9,20 @@ from pydantic_ld.ROCrateModel import ROCrateModel
 def create_api_specimen_imaging_preparation_protocol(
     crate_objects_by_id: dict[str, ROCrateModel], study_uuid: str
 ) -> None:
-    ro_crate_sipp = [
-        (
-            obj
-            for obj in crate_objects_by_id.values()
-            if isinstance(obj, ROCrateModels.SpecimenImagingPreparationProtocol)
-        )
-    ]
+    ro_crate_sipp = (
+        obj
+        for obj in crate_objects_by_id.values()
+        if isinstance(obj, ROCrateModels.SpecimenImagingPreparationProtocol)
+    )
 
     sipp_list = []
     for sipp in ro_crate_sipp:
-        sipp_list.append(convert_specimen_imaging_preparation_protocol(sipp, crate_objects_by_id, study_uuid))
-    
+        sipp_list.append(
+            convert_specimen_imaging_preparation_protocol(
+                sipp, crate_objects_by_id, study_uuid
+            )
+        )
+
     print(sipp_list)
 
 
@@ -30,7 +32,9 @@ def convert_specimen_imaging_preparation_protocol(
     study_uuid: UUID,
 ) -> APISIIP:
     sipp = {
-        "uuid": uuid_creation.create_specimen_imaging_preparation_protocol_uuid(ro_crate_sipp.id, study_uuid),
+        "uuid": uuid_creation.create_specimen_imaging_preparation_protocol_uuid(
+            ro_crate_sipp.id, study_uuid
+        ),
         "title_id": ro_crate_sipp.title,
         "protocol_description": ro_crate_sipp.protocol_description,
     }

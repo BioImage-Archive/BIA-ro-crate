@@ -51,9 +51,9 @@ class Contributor(ROCrateModel):
     )
     website: Annotated[AnyUrl, FieldContext("http://bia/website")] = Field(default=None)
     affiliation: Annotated[
-        Union[ObjectReference, list[ObjectReference]],
-        FieldContext("http://schema.org/affiliation", isIdField=True),
-    ] = Field(default_factory=[])
+        list[ObjectReference],
+        FieldContext("http://schema.org/affiliation"),
+    ] = Field(default_factory=list)
     role: Annotated[str, FieldContext("http://bia/role")] = Field(default=None)
 
     model_config = ConfigDict(model_type="http://bia/Contributor")
@@ -188,7 +188,7 @@ class Taxon(ROCrateModel):
 
 
 class Protocol(ROCrateModel):
-    title: Annotated[str, FieldContext("http://schema.org/name")] = Field()
+    title: Annotated[Optional[str], FieldContext("http://schema.org/name")] = Field(default=None)
     protocol_description: Annotated[
         str, FieldContext("http://schema.org/description")
     ] = Field()
@@ -201,7 +201,7 @@ class SpecimenImagingPreparationProtocol(Protocol):
         list[str], FieldContext("http://bia/signalChannelInformation", isIdField=True)
     ] = Field(default_factory=list)
 
-    model_config = ConfigDict(model_type="http://bia/SampleImagingPreparationProtocol")
+    model_config = ConfigDict(model_type="http://bia/SpecimenImagingPreparationProtocol")
 
 
 class SignalChannelInformation(ROCrateModel):

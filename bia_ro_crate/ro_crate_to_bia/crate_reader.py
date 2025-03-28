@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 from pydantic_ld.ROCrateModel import ROCrateModel
 from rocrate.rocrate import ROCrate
-import ingest_models
+import bia_ro_crate.ro_crate_to_bia.ingest_models as ingest_models
 import inspect
 import pyld
 from bia_ro_crate.ro_crate_to_bia.entity_conversion import (
@@ -46,17 +46,19 @@ def load_entities(data: dict) -> dict[str, ROCrateModel]:
     crate_objects_by_id = {}
     classes = inspect.getmembers(
         ingest_models,
-        lambda member: inspect.isclass(member) and member.__module__ == "ingest_models",
+        lambda member: inspect.isclass(member) and member.__module__ == "bia_ro_crate.ro_crate_to_bia.ingest_models",
     )
 
     for entity in entities:
+        start_len = len(crate_objects_by_id)
         entity_type = expand_entity(entity, context).get("@type")
         for name, model in classes:
             if model.model_config["model_type"] in entity_type:
                 object: ROCrateModel = model(**entity)
                 crate_objects_by_id[object.id] = object
-        else:
-            print(f"No suitable bia type found for {entity}")
+                break
+        if len(crate_objects_by_id) == start_len:
+            print(f"Could not find class for {entity}")
     return crate_objects_by_id
 
 

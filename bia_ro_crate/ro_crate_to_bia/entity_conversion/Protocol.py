@@ -4,24 +4,24 @@ from bia_shared_datamodels import uuid_creation
 from bia_integrator_api.models import Protocol as APIProtocol
 import bia_ro_crate.ro_crate_to_bia.ingest_models as ROCrateModels
 from pydantic_ld.ROCrateModel import ROCrateModel
-
+import json
 
 def create_api_protocol(
     crate_objects_by_id: dict[str, ROCrateModel], study_uuid: str
 ) -> None:
-    ro_crate_protocol = [
-        (
-            obj
-            for obj in crate_objects_by_id.values()
-            if isinstance(obj, ROCrateModels.Protocol)
-        )
-    ]
+    ro_crate_protocol = (
+        obj
+        for obj in crate_objects_by_id.values()
+        if isinstance(obj, ROCrateModels.Protocol)
+    )
 
     protocol_list = []
     for protocol in ro_crate_protocol:
-        protocol_list.append(convert_protocol(protocol, crate_objects_by_id, study_uuid))
-    
-    print(protocol_list)
+        protocol_list.append(
+            convert_protocol(protocol, crate_objects_by_id, study_uuid)
+        )
+
+    print(json.dumps(protocol_list, indent=2))
 
 
 def convert_protocol(

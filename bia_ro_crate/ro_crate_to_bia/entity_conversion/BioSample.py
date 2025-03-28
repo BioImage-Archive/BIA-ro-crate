@@ -4,18 +4,16 @@ from bia_shared_datamodels import uuid_creation, semantic_models
 import bia_integrator_api.models as APIModels
 import bia_ro_crate.ro_crate_to_bia.ingest_models as ROCrateModels
 from pydantic_ld.ROCrateModel import ROCrateModel
-
+import json
 
 def create_api_bio_sample(
     crate_objects_by_id: dict[str, ROCrateModel], study_uuid: str
 ) -> None:
-    ro_crate_bio_sample = [
-        (
-            obj
-            for obj in crate_objects_by_id.values()
-            if isinstance(obj, ROCrateModels.BioSample)
-        )
-    ]
+    ro_crate_bio_sample = (
+        obj
+        for obj in crate_objects_by_id.values()
+        if isinstance(obj, ROCrateModels.BioSample)
+    )
 
     bio_sample_list = []
     for bio_sample in ro_crate_bio_sample:
@@ -23,7 +21,7 @@ def create_api_bio_sample(
             convert_bio_sample(bio_sample, crate_objects_by_id, study_uuid)
         )
 
-    print(bio_sample_list)
+    print(json.dumps(bio_sample_list, indent=2))
 
 
 def convert_bio_sample(
@@ -59,5 +57,5 @@ def convert_taxon(ro_crate_taxon: ROCrateModels.Taxon) -> semantic_models.Taxon:
 
     if ro_crate_taxon.id.startswith("NCBITaxon:"):
         taxon["id"] = ro_crate_taxon.id
-    
+
     return semantic_models.Taxon(**taxon)
