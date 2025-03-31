@@ -466,9 +466,9 @@
             "fbbi_id": ["fbbi_00000251"]
         },
         {
-            "@id":  "DNA_damage/Nup133K0/Np_24h/Rep3/NPKO133_B3_24h_H2AX-488_53BP1-594_004.tif",
+            "@id":  "DNA_damage/Sample_Image_NPKO133_B1_24h_H2AX-488_53BP1-594_001.tif",
             "@type": [
-                "Dataset", "bia:Image"
+                "File", "bia:Image"
             ],
             "creation_process": "_:cp0"
         },

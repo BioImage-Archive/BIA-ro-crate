@@ -8,7 +8,16 @@ runner = CliRunner()
 
 def test_ingest_ro_crate_metadata(tmp_path: Path):
 
-    result = runner.invoke(bia_ro_crate, ["ingest", "-o", tmp_path])
+    crate_path = (
+        Path(__file__).parents[1]
+        / "bia_ro_crate"
+        / "model"
+        / "example"
+        / "S-BIAD1494"
+        / "ro-crate-version"
+    )
+
+    result = runner.invoke(bia_ro_crate, ["ingest", "-c", crate_path, "-o", tmp_path])
 
     assert result.exit_code == 0
 

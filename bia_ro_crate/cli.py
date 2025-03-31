@@ -60,6 +60,15 @@ def image_crate(
 
 @bia_ro_crate.command("ingest")
 def convert(
+    crate_path: Annotated[
+        Optional[Path],
+        typer.Option(
+            "--crate-path",
+            "-c",
+            case_sensitive=False,
+            help="Path to the ro-crate root (or ro-crate-metadata.json)",
+        ),
+    ] = None,
     output_dir: Annotated[
         Optional[Path],
         typer.Option(
@@ -69,13 +78,13 @@ def convert(
         ),
     ] = Path(__file__).parents[1],
 ):
-    crate_path = (
-        Path(__file__).parents[0]
-        / "model"
-        / "example"
-        / "S-BIAD1494"
-        / "ro-crate-version"
-    )
+    # crate_path = (
+    #     Path(__file__).parents[0]
+    #     / "model"
+    #     / "example"
+    #     / "S-BIAD1494"
+    #     / "ro-crate-version"
+    # )
 
     crate = crate_read(crate_path)
 
