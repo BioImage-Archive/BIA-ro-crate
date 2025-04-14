@@ -13,6 +13,7 @@ from bia_ro_crate.ro_crate_to_bia.entity_conversion import (
     Protocol,
     SpecimenImagingPreparationProtocol,
     Study,
+    FileReference
 )
 from .bia_to_zarr_crate.conversion import create_ro_crate_for_image
 from pathlib import Path
@@ -78,15 +79,9 @@ def convert(
         ),
     ] = Path(__file__).parents[1],
 ):
-    # crate_path = (
-    #     Path(__file__).parents[0]
-    #     / "model"
-    #     / "example"
-    #     / "S-BIAD1494"
-    #     / "ro-crate-version"
-    # )
 
-    crate = crate_read(crate_path)
+    # Just for validation
+    crate_read(crate_path)
 
     entities = process_ro_crate(crate_path)
 
@@ -97,7 +92,8 @@ def convert(
 
     study_uuid = study.uuid
 
-    api_objects += Dataset.create_api_dataset(entities, study_uuid)
+    datasets = Dataset.create_api_dataset(entities, study_uuid)
+    api_objects += datasets
     api_objects += AnnotationMethod.create_api_image_acquisition_protocol(
         entities, study_uuid
     )
@@ -108,6 +104,11 @@ def convert(
     )
     api_objects += SpecimenImagingPreparationProtocol.create_api_specimen_imaging_preparation_protocol(
         entities, study_uuid
+    )
+
+    
+    api_objects += FileReference.create_file_reference(
+        entities, study_uuid, crate_path
     )
 
     ApiModels = RootModel[list]

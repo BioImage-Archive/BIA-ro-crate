@@ -1,8 +1,10 @@
-from uuid import UUID
 from bia_ro_crate.ro_crate_to_bia.pydantic_ld.ROCrateModel import ROCrateModel
 from bia_shared_datamodels import uuid_creation
 from bia_integrator_api.models import AnnotationMethod as APIAnnotationMethod
 import bia_ro_crate.ro_crate_to_bia.ingest_models as ROCrateModels
+import logging
+
+logger = logging.getLogger("__main__." + __name__)
 
 def create_api_image_acquisition_protocol(
     crate_objects_by_id: dict[str, ROCrateModel], study_uuid: str
@@ -27,7 +29,7 @@ def create_api_image_acquisition_protocol(
 def convert_annotation_method(
     ro_crate_annotation_method: ROCrateModels.AnnotationMethod,
     crate_objects_by_id: dict[str, ROCrateModel],
-    study_uuid: UUID,
+    study_uuid: str,
 ) -> APIAnnotationMethod:
     iap = {
         "uuid": uuid_creation.create_annotation_method_uuid(

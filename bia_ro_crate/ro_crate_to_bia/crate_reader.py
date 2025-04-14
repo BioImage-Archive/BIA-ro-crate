@@ -6,6 +6,10 @@ from rocrate.rocrate import ROCrate
 import bia_ro_crate.ro_crate_to_bia.ingest_models as ingest_models
 import inspect
 import pyld
+import rdflib
+import logging
+
+logger = logging.getLogger("__main__." + __name__)
 
 
 def read_json_from_ro_crate(crate_path: str) -> dict:
@@ -49,7 +53,13 @@ def load_entities(data: dict) -> dict[str, ROCrateModel]:
                 crate_objects_by_id[object.id] = object
                 break
         if len(crate_objects_by_id) == start_len:
-            print(f"Could not find class for {entity}")
+            if "ro-crate-metadata.json" == entity.get("@id"):
+                logger.info("Skipping ro-crate-metadata.json entity.")
+            elif str(rdflib.RDF.Property) in entity_type:
+                logger.info(f"Skipping RDF.Property: {entity.get('name')}. Though we may want to processes these in some way later")
+            else:
+                logger.warning(f"Could not find class for entity of types: {entity_type}")
+                logger.debug(f"Entity: {entity}")
     return crate_objects_by_id
 
 

@@ -3,6 +3,9 @@ import bia_integrator_api.models as APIModels
 import bia_ro_crate.ro_crate_to_bia.ingest_models as ROCrateModels
 from bia_ro_crate.ro_crate_to_bia.pydantic_ld.ROCrateModel import ROCrateModel
 from bia_ro_crate.licences import to_code
+import logging
+
+logger = logging.getLogger("__main__." + __name__)
 
 
 def create_api_study(crate_objects_by_id: dict[str, ROCrateModel]) -> APIModels.Study:
