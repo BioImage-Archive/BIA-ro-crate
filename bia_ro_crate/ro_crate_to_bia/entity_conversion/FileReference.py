@@ -24,11 +24,15 @@ def create_file_reference(
     for dataset in ro_crate_datasets:
         file_paths = find_files(dataset, crate_path)
 
+        # TODO: deal with files not in datasets, and possibly edge cases like unzipped omezarrs.
+
         dataset_uuid = str(uuid_creation.create_dataset_uuid(dataset.id, study_uuid))
 
         for file_path in file_paths:
             file_reference_list.append(
-                create_api_file_reference(file_path, study_uuid, dataset_uuid, crate_path)
+                create_api_file_reference(
+                    file_path, study_uuid, dataset_uuid, crate_path
+                )
             )
 
     return file_reference_list
@@ -40,21 +44,28 @@ def find_files(dataset: ROCrateModels.Dataset, crate_path: pathlib.Path) -> list
     return paths
 
 
+def get_suffix(file_path: str) -> str:
+    # TODO: Deal with different forms of 'the same' file types consistently across all ingest modules.
+    return pathlib.Path(file_path).suffix
+
+
 def create_api_file_reference(
     file_path: str, study_uuid: str, dataset_uuid: str, crate_path: pathlib.Path
 ) -> list[APIModels.FileReference]:
-    
+
     relative_path = pathlib.Path(file_path).relative_to(crate_path).as_posix()
 
     # TODO: Work out how file URI would be generated.
 
     file_reference = {
-        "uuid": str(uuid_creation.create_file_reference_uuid(relative_path, study_uuid)),
+        "uuid": str(
+            uuid_creation.create_file_reference_uuid(relative_path, study_uuid)
+        ),
         "submission_dataset_uuid": dataset_uuid,
         "file_path": str(relative_path),
-        "version": 1,
+        "version": 0,
         "size_in_bytes": pathlib.Path(file_path).stat().st_size,
-        "format": pathlib.Path(file_path).suffix,
+        "format": get_suffix(file_path),
         "uri": "None?",
     }
 

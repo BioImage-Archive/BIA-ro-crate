@@ -39,7 +39,7 @@ def convert_bio_sample(
             uuid_creation.create_bio_sample_uuid(ro_crate_bio_sample.id, study_uuid)
         ),
         "title_id": ro_crate_bio_sample.id,
-        "version": 1,
+        "version": 0,
         "organism_classification": taxons,
         "biological_entity_description": ro_crate_bio_sample.biological_entity_description,
         "intrinsic_variable_description": ro_crate_bio_sample.intrinsic_variable_description,

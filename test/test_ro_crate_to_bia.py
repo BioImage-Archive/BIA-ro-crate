@@ -29,5 +29,5 @@ def test_ingest_ro_crate_metadata(tmp_path: Path):
 
     # Account for different ordering of JSON objects due to file reference order being somewhat arbitrary.
     assert len(cli_out) == len(expected_out)
-    for json_obj in cli_out:
-        assert json_obj in expected_out
+    for json_obj in expected_out:
+        assert json_obj in cli_out

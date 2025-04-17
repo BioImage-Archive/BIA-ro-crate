@@ -6,6 +6,7 @@ import logging
 
 logger = logging.getLogger("__main__." + __name__)
 
+
 def create_api_protocol(
     crate_objects_by_id: dict[str, ROCrateModel], study_uuid: str
 ) -> list[APIProtocol]:
@@ -17,19 +18,16 @@ def create_api_protocol(
 
     protocol_list = []
     for protocol in ro_crate_protocol:
-        protocol_list.append(
-            convert_protocol(protocol, crate_objects_by_id, study_uuid)
-        )
+        protocol_list.append(convert_protocol(protocol, study_uuid))
 
     return protocol_list
 
 
 def convert_protocol(
     ro_crate_protocol: ROCrateModels.Protocol,
-    crate_objects_by_id: dict[str, ROCrateModel],
     study_uuid: str,
 ) -> APIProtocol:
-    
+
     title = None
     if ro_crate_protocol.title:
         title = ro_crate_protocol.title
@@ -37,10 +35,12 @@ def convert_protocol(
         title = ro_crate_protocol.id
 
     protocol = {
-        "uuid": str(uuid_creation.create_protocol_uuid(ro_crate_protocol.id, study_uuid)),
+        "uuid": str(
+            uuid_creation.create_protocol_uuid(ro_crate_protocol.id, study_uuid)
+        ),
         "title_id": title,
         "protocol_description": ro_crate_protocol.protocol_description,
-        "version": 1
+        "version": 0,
     }
 
     return APIProtocol(**protocol)

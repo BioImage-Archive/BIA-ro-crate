@@ -30,6 +30,7 @@ def read_json_from_ro_crate(crate_path: str) -> dict:
 
 
 def validate_json(data):
+    # TODO: Implement actual validation logic using models & context. RO-CRATE json structure is still under a lot of discussion, so defaulting to True for now.
     return True
 
 
@@ -56,9 +57,13 @@ def load_entities(data: dict) -> dict[str, ROCrateModel]:
             if "ro-crate-metadata.json" == entity.get("@id"):
                 logger.info("Skipping ro-crate-metadata.json entity.")
             elif str(rdflib.RDF.Property) in entity_type:
-                logger.info(f"Skipping RDF.Property: {entity.get('name')}. Though we may want to processes these in some way later")
+                logger.info(
+                    f"Skipping RDF.Property: {entity.get('name')}. Though we may want to processes these in some way later"
+                )
             else:
-                logger.warning(f"Could not find class for entity of types: {entity_type}")
+                logger.warning(
+                    f"Could not find class for entity of types: {entity_type}"
+                )
                 logger.debug(f"Entity: {entity}")
     return crate_objects_by_id
 

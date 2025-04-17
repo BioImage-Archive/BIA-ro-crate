@@ -6,6 +6,7 @@ import logging
 
 logger = logging.getLogger("__main__." + __name__)
 
+
 def create_api_image_acquisition_protocol(
     crate_objects_by_id: dict[str, ROCrateModel], study_uuid: str
 ) -> list[APIAnnotationMethod]:
@@ -18,9 +19,7 @@ def create_api_image_acquisition_protocol(
     annotation_method_list = []
     for annotation_method in ro_crate_annotation_method:
         annotation_method_list.append(
-            convert_annotation_method(
-                annotation_method, crate_objects_by_id, study_uuid
-            )
+            convert_annotation_method(annotation_method, study_uuid)
         )
 
     return annotation_method_list
@@ -28,7 +27,6 @@ def create_api_image_acquisition_protocol(
 
 def convert_annotation_method(
     ro_crate_annotation_method: ROCrateModels.AnnotationMethod,
-    crate_objects_by_id: dict[str, ROCrateModel],
     study_uuid: str,
 ) -> APIAnnotationMethod:
     iap = {
@@ -41,6 +39,7 @@ def convert_annotation_method(
         "annotation_coverage": ro_crate_annotation_method.annotation_coverage,
         "method_type": ro_crate_annotation_method.method_type,
         "annotation_source_indicator": ro_crate_annotation_method.annotation_source_indicator,
+        "version": 0,
     }
 
     return APIAnnotationMethod(**iap)

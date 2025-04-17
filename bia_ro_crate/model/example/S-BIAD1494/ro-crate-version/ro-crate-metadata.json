@@ -227,7 +227,7 @@
             "@type": "@id"
         },
         "association": {
-            "@id": "bias:association",
+            "@id": "bia:association",
             "@type": "@id"
 
         },

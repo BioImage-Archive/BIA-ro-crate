@@ -39,10 +39,11 @@ def convert_specimen_imaging_preparation_protocol(
     elif ro_crate_sipp.id:
         title = ro_crate_sipp.id
 
-
     signal_channel_info_list = []
     for signal_channel_info_id in ro_crate_sipp.signal_channel_information:
-        signal_channel_info_list.append(convert_signal_channel_info(crate_objects_by_id[signal_channel_info_id]))
+        signal_channel_info_list.append(
+            convert_signal_channel_info(crate_objects_by_id[signal_channel_info_id])
+        )
 
     sipp = {
         "uuid": str(
@@ -52,14 +53,16 @@ def convert_specimen_imaging_preparation_protocol(
         ),
         "title_id": title,
         "protocol_description": ro_crate_sipp.protocol_description,
-        "version": 1,
-        "signal_channel_information": signal_channel_info_list
+        "version": 0,
+        "signal_channel_information": signal_channel_info_list,
     }
 
     return APIModels.SpecimenImagingPreparationProtocol(**sipp)
 
 
-def convert_signal_channel_info(ro_crate_sci: ROCrateModels.SignalChannelInformation) -> APIModels.SignalChannelInformation:
+def convert_signal_channel_info(
+    ro_crate_sci: ROCrateModels.SignalChannelInformation,
+) -> APIModels.SignalChannelInformation:
     sci = {
         "signal_contrast_mechanism_description": ro_crate_sci.signal_contrast_mechanism_description,
         "channel_biological_entity": ro_crate_sci.channel_biological_entity,

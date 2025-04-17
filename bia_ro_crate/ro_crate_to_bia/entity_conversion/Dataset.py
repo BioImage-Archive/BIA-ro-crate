@@ -18,16 +18,13 @@ def create_api_dataset(
 
     dataset_list = []
     for dataset in ro_crate_datasets:
-        dataset_list.append(
-            convert_image_acquisition_protocol(dataset, crate_objects_by_id, study_uuid)
-        )
+        dataset_list.append(convert_dataset(dataset, study_uuid))
 
     return dataset_list
 
 
-def convert_image_acquisition_protocol(
+def convert_dataset(
     ro_crate_dataset: ROCrateModels.Dataset,
-    crate_objects_by_id: dict[str, ROCrateModel],
     study_uuid: str,
 ) -> APIModels.Dataset:
 
@@ -38,16 +35,12 @@ def convert_image_acquisition_protocol(
         title = ro_crate_dataset.id
 
     dataset = {
-        "uuid": str(
-            uuid_creation.create_dataset_uuid(
-                ro_crate_dataset.id, study_uuid
-            )
-        ),
+        "uuid": str(uuid_creation.create_dataset_uuid(ro_crate_dataset.id, study_uuid)),
         "submitted_in_study_uuid": study_uuid,
         "title_id": title,
         "description": ro_crate_dataset.description,
-        "version": 1,
-        "example_image_uri": []
+        "version": 0,
+        "example_image_uri": [],
     }
 
     return APIModels.Dataset(**dataset)

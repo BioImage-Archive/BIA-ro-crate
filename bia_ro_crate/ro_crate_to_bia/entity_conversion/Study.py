@@ -46,7 +46,7 @@ def convert_study(
     study = {
         "accession_id": accession_id,
         "uuid": str(uuid_creation.create_study_uuid(accession_id)),
-        "version": 1,
+        "version": 0,
         "title": ro_crate_study.title,
         "description": ro_crate_study.description,
         "release_date": ro_crate_study.datePublished,
