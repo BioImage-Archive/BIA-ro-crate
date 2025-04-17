@@ -1,8 +1,10 @@
-from uuid import UUID
 from bia_ro_crate.ro_crate_to_bia.pydantic_ld.ROCrateModel import ROCrateModel
 from bia_shared_datamodels import uuid_creation
 import bia_integrator_api.models as APIModels
 import bia_ro_crate.ro_crate_to_bia.ingest_models as ROCrateModels
+import logging
+
+logger = logging.getLogger("__main__." + __name__)
 
 
 def create_api_bio_sample(
@@ -25,7 +27,7 @@ def create_api_bio_sample(
 def convert_bio_sample(
     ro_crate_bio_sample: ROCrateModels.BioSample,
     crate_objects_by_id: dict[str, ROCrateModel],
-    study_uuid: UUID,
+    study_uuid: str,
 ) -> APIModels.BioSample:
 
     taxons = []
@@ -37,7 +39,7 @@ def convert_bio_sample(
             uuid_creation.create_bio_sample_uuid(ro_crate_bio_sample.id, study_uuid)
         ),
         "title_id": ro_crate_bio_sample.id,
-        "version": 1,
+        "version": 0,
         "organism_classification": taxons,
         "biological_entity_description": ro_crate_bio_sample.biological_entity_description,
         "intrinsic_variable_description": ro_crate_bio_sample.intrinsic_variable_description,

@@ -3,6 +3,9 @@ import bia_integrator_api.models as APIModels
 import bia_ro_crate.ro_crate_to_bia.ingest_models as ROCrateModels
 from bia_ro_crate.ro_crate_to_bia.pydantic_ld.ROCrateModel import ROCrateModel
 from bia_ro_crate.licences import to_code
+import logging
+
+logger = logging.getLogger("__main__." + __name__)
 
 
 def create_api_study(crate_objects_by_id: dict[str, ROCrateModel]) -> APIModels.Study:
@@ -43,7 +46,7 @@ def convert_study(
     study = {
         "accession_id": accession_id,
         "uuid": str(uuid_creation.create_study_uuid(accession_id)),
-        "version": 1,
+        "version": 0,
         "title": ro_crate_study.title,
         "description": ro_crate_study.description,
         "release_date": ro_crate_study.datePublished,

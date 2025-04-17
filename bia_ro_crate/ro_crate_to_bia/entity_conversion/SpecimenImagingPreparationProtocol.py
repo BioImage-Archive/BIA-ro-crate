@@ -1,8 +1,10 @@
-from uuid import UUID
 from bia_ro_crate.ro_crate_to_bia.pydantic_ld.ROCrateModel import ROCrateModel
 from bia_shared_datamodels import uuid_creation
 import bia_integrator_api.models as APIModels
 import bia_ro_crate.ro_crate_to_bia.ingest_models as ROCrateModels
+import logging
+
+logger = logging.getLogger("__main__." + __name__)
 
 
 def create_api_specimen_imaging_preparation_protocol(
@@ -28,7 +30,7 @@ def create_api_specimen_imaging_preparation_protocol(
 def convert_specimen_imaging_preparation_protocol(
     ro_crate_sipp: ROCrateModels.SpecimenImagingPreparationProtocol,
     crate_objects_by_id: dict[str, ROCrateModel],
-    study_uuid: UUID,
+    study_uuid: str,
 ) -> APIModels.SpecimenImagingPreparationProtocol:
 
     title = None
@@ -37,10 +39,11 @@ def convert_specimen_imaging_preparation_protocol(
     elif ro_crate_sipp.id:
         title = ro_crate_sipp.id
 
-
     signal_channel_info_list = []
     for signal_channel_info_id in ro_crate_sipp.signal_channel_information:
-        signal_channel_info_list.append(convert_signal_channel_info(crate_objects_by_id[signal_channel_info_id]))
+        signal_channel_info_list.append(
+            convert_signal_channel_info(crate_objects_by_id[signal_channel_info_id])
+        )
 
     sipp = {
         "uuid": str(
@@ -50,14 +53,16 @@ def convert_specimen_imaging_preparation_protocol(
         ),
         "title_id": title,
         "protocol_description": ro_crate_sipp.protocol_description,
-        "version": 1,
-        "signal_channel_information": signal_channel_info_list
+        "version": 0,
+        "signal_channel_information": signal_channel_info_list,
     }
 
     return APIModels.SpecimenImagingPreparationProtocol(**sipp)
 
 
-def convert_signal_channel_info(ro_crate_sci: ROCrateModels.SignalChannelInformation) -> APIModels.SignalChannelInformation:
+def convert_signal_channel_info(
+    ro_crate_sci: ROCrateModels.SignalChannelInformation,
+) -> APIModels.SignalChannelInformation:
     sci = {
         "signal_contrast_mechanism_description": ro_crate_sci.signal_contrast_mechanism_description,
         "channel_biological_entity": ro_crate_sci.channel_biological_entity,
