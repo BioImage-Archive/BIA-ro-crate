@@ -355,7 +355,10 @@
             "@type": "bia:Contributor",
             "display_name": "Giulia Paci",
             "@id": "https://orcid.org/0000-0003-0565-4356",
-            "role": "data acquisition, data curator",
+            "role": [
+                "data acquisition", 
+                "data curator"
+            ],
             "contact_email": "g.paci@ucl.ac.uk",
             "affiliation":[
                 {
@@ -366,7 +369,11 @@
         {
             "@type": "bia:Contributor",
             "display_name": "Ines Fernandez Mosquera",
-            "role": "data acquisition, data annotator, data curator",
+            "role": [
+                "data acquisition", 
+                "data annotator", 
+                "data curator"
+            ],
             "affiliation":[
                 {
                     "@id": "https://ror.org/00fv61j67"
@@ -377,7 +384,9 @@
             "@type": "bia:Contributor",
             "display_name": "Pablo Vicente Munuera",
             "@id": "https://orcid.org/0000-0001-5402-7637",
-            "role": "submitter",
+            "role": [
+                "submitter"
+            ],
             "contact_email": "p.munuera@ucl.ac.uk",
             "affiliation":[
                 {
@@ -389,7 +398,10 @@
             "@type": "bia:Contributor",
             "display_name": "Yanlan Mao",
             "@id": "https://orcid.org/0000-0002-8722-4992",
-            "role": "conceptualisation, corresponding author",
+            "role": [
+                "conceptualisation", 
+                "corresponding author"
+            ],
             "contact_email": "y.mao@ucl.ac.uk",
             "affiliation":[
                 {
