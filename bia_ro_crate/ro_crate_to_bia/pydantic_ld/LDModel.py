@@ -13,7 +13,8 @@ class ObjectReference(BaseModel):
 class LDModel(BaseModel):
 
     @classmethod
-    def generate_field_context(cls) -> list[ContextTerm]:
+    def generate_field_context(cls, compacted_ids: bool = False) -> list[ContextTerm]:
+        # TODO: add support for various json-ld profiles / other context generation settings
         field_contexts = []
 
         for field_name, field_info in cls.model_fields.items():
@@ -22,7 +23,17 @@ class LDModel(BaseModel):
             )
 
             if field_context:
-                term = ContextTerm(full_uri=field_context.uri, field_name=field_name)
+                if compacted_ids and field_context.isIdField:
+                    term = ContextTerm(
+                        full_uri=field_context.uri,
+                        field_name=field_name,
+                        type_mapping="@id",
+                    )
+                else:
+                    term = ContextTerm(
+                        full_uri=field_context.uri, field_name=field_name
+                    )
+
                 field_contexts.append(term)
 
         return field_contexts
