@@ -49,7 +49,7 @@ def convert_study(
         "version": 0,
         "title": ro_crate_study.title,
         "description": ro_crate_study.description,
-        "release_date": ro_crate_study.datePublished,
+        "release_date": ro_crate_study.date_published,
         "licence": to_code(str(ro_crate_study.licence)),
         "acknowledgement": ro_crate_study.acknowledgement,
         "keyword": ro_crate_study.keyword,
@@ -66,7 +66,7 @@ def convert_contributor(
 
     affiliations = []
     for affiliation_id in contributor.affiliation:
-        affiliations.append(convert_affiliation(crate_objects_by_id[affiliation_id.id]))
+        affiliations.append(convert_affiliation(crate_objects_by_id[affiliation_id]))
 
     contributor_dictionary = {
         "display_name": contributor.display_name,

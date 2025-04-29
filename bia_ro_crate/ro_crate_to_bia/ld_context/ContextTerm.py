@@ -35,7 +35,6 @@ class ContextTerm:
 
         context_term |= {"@id": id}
 
-        # TODO: make whether type mapping is used controllable by this method.
         if self.type_mapping:
             context_term |= {"@type": self.type_mapping}
         return context_term
@@ -43,7 +42,6 @@ class ContextTerm:
     def to_mapping_dict(
         self, prefixes: Optional[dict[str, str]] = None
     ) -> dict[str, dict]:
-        print(prefixes)
         context_term = self.to_context_term_dict(prefixes)
 
         return {self.field_name: context_term}

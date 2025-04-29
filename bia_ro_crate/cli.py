@@ -3,8 +3,8 @@ import logging
 import json
 from typing import Annotated, Optional
 from uuid import UUID
-from pydantic import RootModel, BaseModel
-from bia_ro_crate.ro_crate_to_bia.crate_reader import crate_read, process_ro_crate
+from pydantic import RootModel
+from bia_ro_crate.ro_crate_to_bia.crate_reader import process_ro_crate
 from bia_ro_crate.ro_crate_to_bia.entity_conversion import (
     AnnotationMethod,
     BioSample,
@@ -13,7 +13,7 @@ from bia_ro_crate.ro_crate_to_bia.entity_conversion import (
     Protocol,
     SpecimenImagingPreparationProtocol,
     Study,
-    FileReference
+    FileReference,
 )
 from .bia_to_zarr_crate.conversion import create_ro_crate_for_image
 from pathlib import Path
@@ -80,9 +80,6 @@ def convert(
     ] = Path(__file__).parents[1],
 ):
 
-    # Just for validation
-    crate_read(crate_path)
-
     entities = process_ro_crate(crate_path)
 
     api_objects = []
@@ -106,10 +103,7 @@ def convert(
         entities, study_uuid
     )
 
-    
-    api_objects += FileReference.create_file_reference(
-        entities, study_uuid, crate_path
-    )
+    api_objects += FileReference.create_file_reference(entities, study_uuid, crate_path)
 
     ApiModels = RootModel[list]
     write_out = ApiModels(api_objects)

@@ -6,8 +6,8 @@ from typing import Annotated, Union
 
 
 class ROCrateModel(LDModel):
-    id: Annotated[str, FieldContext(RDF.type)] = Field(alias="@id")
-    type: Annotated[Union[str, list[str]], FieldContext(RDF.type)] = Field(alias="@type")
+    id: str = Field(alias="@id")
+    type: Union[str, list[str]] = Field(alias="@type")
 
     @classmethod
     def get_model_type(cls) -> URIRef:

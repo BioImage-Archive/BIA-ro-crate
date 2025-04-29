@@ -32,7 +32,7 @@ def convert_bio_sample(
 
     taxons = []
     for taxon_id in ro_crate_bio_sample.organism_classification:
-        taxons.append(convert_taxon(crate_objects_by_id[taxon_id.id]))
+        taxons.append(convert_taxon(crate_objects_by_id[taxon_id]))
 
     bio_sample = {
         "uuid": str(
